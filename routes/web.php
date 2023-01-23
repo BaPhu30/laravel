@@ -56,7 +56,7 @@ use App\Http\Controllers\UserVoucherWalletController;
 |
 */
 
-route::get('/index', [IndexController::class, 'index'])->name('index');
+route::get('/', [IndexController::class, 'index'])->name('index');
 
 // route::middleware('auth.admin')->group(function () {
 route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
