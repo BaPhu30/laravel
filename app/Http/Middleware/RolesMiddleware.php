@@ -17,7 +17,7 @@ class RolesMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    protected function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         $request->validate([
             'email' => 'required|min:2|max:255',
