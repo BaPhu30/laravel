@@ -69,8 +69,7 @@ route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
 
     route::get('/user-role-table', [AdminUserRoleTableController::class, 'index'])->name('user-role-table');
     route::get('/insert-user-role-table', [AdminUserRoleTableController::class, 'create'])->name('insert-user-role-table');
-    // route::post('/update-user-roles-table/{id}', [AdminUserRoleTableController::class, 'update']);
-    // route::delete('/delete-user-roles-table/{id}', [AdminUserRoleTableController::class, 'destroy']);
+    route::delete('/delete-user-roles-table/{id}', [AdminUserRoleTableController::class, 'destroy']);
 
     route::get('/roles-table', [AdminRolesTableController::class, 'index'])->name('roles-table');
     route::get('/insert-roles-table', function () {

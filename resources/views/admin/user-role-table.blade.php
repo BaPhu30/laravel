@@ -178,7 +178,6 @@ User Role Table
               <td>{{ $UserRole->role_id }}</td>
               <td>
                 <div class="w-100 d-flex">
-                  <button id="edit-{{ $UserRole->id }}" class="edit-data btn btn-warning mr-2" data-name="{{ $UserRole->name }}">Edit</button>
                   <button id="delete-{{ $UserRole->id }}" class="delete-data btn btn-danger">Delete</button>
                 </div>
               </td>

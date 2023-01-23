@@ -62,17 +62,3 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-## Branch Name Convention
-
-- Code tính năng mới: feature/<tên account git>_<tên task>
-- Fix bug: fixbug/<tên account git>_<tên bug>
-- Hot fix (bug fix nguy hiểm): hotfix/<tên account git>_<tên bug>
-- Build code mới: build/<tên tính năng mới>
-- release ver mới: release/<mã ver mới>
-
-
-
-
-
-

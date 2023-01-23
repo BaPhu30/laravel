@@ -180,6 +180,9 @@ Insert User Role Table
                 @endforeach
               </select>
             </div>
+            @if (Session::has("failed"))
+            <span class="text-danger">*{{ Session::get('failed') }}</span>
+            @endif
           </div>
           <div class="d-flex justify-content-end">
             <button class="btn btn-primary" type="submit">Save</button>
