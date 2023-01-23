@@ -9,7 +9,6 @@ class BuyerLoginController extends Controller
 {
     public function index()
     {   
-        session()->flush();
         if (session()->get('user') != null) {
             return redirect()->route('index');
         };
