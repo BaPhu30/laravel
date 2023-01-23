@@ -1,0 +1,1 @@
+<h1>Welcome account: registered successfully. Your password is: " . $Pass . ""</h1>    

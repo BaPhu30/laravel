@@ -1,0 +1,38 @@
+.main__form {
+  border: none;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.14);
+  width: 500px;
+  min-height: 275px;
+}
+.main__form--wrapper {
+  height: 600px;
+  width: 1040px;
+}
+.main__form--title a {
+  font-size: 20px;
+  color: #ee4d2d !important;
+}
+.main__form--title div {
+  margin-right: 50px;
+  font-size: 20px;
+}
+.main__form--div {
+  margin: 0 80px;
+}
+.main__form--div-input {
+  line-height: 40px;
+}
+.main__form--div-danger {
+  font-size: 12px;
+  color: #ee4d2d;
+}
+.main__form--insert {
+  margin: 0 80px;
+  background-color: #ee4d2d;
+  opacity: 0.7;
+  border: none;
+  line-height: 40px;
+  color: #fff;
+}
+
+/*# sourceMappingURL=reset.css.map */

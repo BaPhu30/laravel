@@ -1,0 +1,85 @@
+@extends('user/header-footer-user')
+
+@push('styles')
+<!-- Link css user/voucher-wallet -->
+<link href="{{ asset('/css/user/voucher-wallet.css') }}" rel="stylesheet">
+@endpush
+
+@section('main')
+<div class="main__account--wrapper container">
+    <div class="main__account container d-flex justify-content-between py-3">
+        <div class="main__account--nav">
+            <a href="{{route('user.account.profile')}}" class="main__account--nav-user d-flex justify-content-between py-3 border-bottom mb-3">
+                <div class="main__account--nav-user-img border rounded-circle">
+                    <img src="{{ asset('/img/img-user.jpg') }}" alt="">
+                </div>
+                <div class="main__account--nav-user-name">
+                    <h6 class="text-dark">Tên user</h6>
+                    <i class="fa-solid fa-pen me-1"></i>
+                    <span>Sửa Hồ Sơ</span>
+                </div>
+            </a>
+            <a href="{{route('user.account.profile')}}" class="main__account--nav-items d-flex justify-content-between align-items-center text-dark mb-3">
+                <div class="main__account--nav-items-img me-2">
+                    <img src="{{ asset('/img/user/account/user-account-1.png') }}" alt="">
+                </div>
+                <div class="main__account--nav-items-title">
+                    Tài Khoản Của Tôi
+                </div>
+            </a>
+            <a href="{{route('user.purchase')}}" class="main__account--nav-items d-flex justify-content-between align-items-center text-dark mb-3">
+                <div class="main__account--nav-items-img me-2">
+                    <img src="{{ asset('/img/user/account/user-account-2.png') }}" alt="">
+                </div>
+                <div class="main__account--nav-items-title">
+                    Đơn Mua
+                </div>
+            </a>
+            <a href="{{route('user.notifications.order')}}" class="main__account--nav-items d-flex justify-content-between align-items-center text-dark mb-3">
+                <div class="main__account--nav-items-img me-2">
+                    <img src="{{ asset('/img/user/account/user-account-3.png') }}" alt="">
+                </div>
+                <div class="main__account--nav-items-title">
+                    Thông Báo
+                </div>
+            </a>
+            <a href="" class="main__account--nav-items d-flex justify-content-between align-items-center text-dark mb-3">
+                <div class="main__account--nav-items-img me-2">
+                    <img src="{{ asset('/img/user/account/user-account-4.png') }}" alt="">
+                </div>
+                <div class="main__account--nav-items-title">
+                    Kho Voucher
+                </div>
+            </a>
+            <a href="{{route('user.coin')}}" class="main__account--nav-items d-flex justify-content-between align-items-center text-dark mb-3">
+                <div class="main__account--nav-items-img me-2">
+                    <img src="{{ asset('/img/user/account/user-account-5.png') }}" alt="">
+                </div>
+                <div class="main__account--nav-items-title">
+                    Shopee Xu
+                </div>
+            </a>
+        </div>
+        <div class="main__account--main card py-3 px-4 mb-5">
+            <div class="main__account--main-title d-flex justify-content-between py-3 mb-3">
+                <h5 class="m-0">Kho Voucher</h5>
+                <div class="text-secondary">
+                    <a href="">Tìm thêm voucher</a>
+                    |
+                    <a href="">Xem lịch sử voucher</a>
+                    |
+                    <a href="">Tìm hiểu thêm</a>
+                </div>
+            </div>
+            <div class="main__account--main-content d-flex justify-content-center align-items-center">
+                <p class="mb-4">Bạn chưa có Voucher nào.</p>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@push('scripts')
+<!-- Link script user/voucher-wallet -->
+<script src="{{ asset('/js/user/voucher-wallet.js') }}"></script>
+@endpush
