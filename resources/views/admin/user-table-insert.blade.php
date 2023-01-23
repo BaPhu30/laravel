@@ -61,13 +61,13 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('admin.bill-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Bill Table</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('admin.bill-info-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Bill Info Table</p>
           </a>
@@ -90,7 +90,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('admin.roles-table') }}" class="nav-link">
+          <a href="{{ route('admin.insert-roles-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Roles Table</p>
           </a>
@@ -102,37 +102,37 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('admin.shop-table') }}" class="nav-link">
+          <a href="{{ route('admin.insert-shop-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Shop Table</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('admin.category-dad-table') }}" class="nav-link">
+          <a href="{{ route('admin.insert-category-dad-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Category Dad Table</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('admin.category-child-table') }}" class="nav-link">
+          <a href="{{ route('admin.insert-category-child-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Category Child Table</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('admin.product-table') }}" class="nav-link">
+          <a href="{{ route('admin.insert-product-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Product Table</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('admin.insert-bill-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Bill Table</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('admin.insert-bill-info-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Bill Info Table</p>
           </a>
