@@ -13,7 +13,7 @@
       <a href="" class="nav-link active">
         <i class="nav-icon fas fa-table"></i>
         <p>
-          Table
+          TABLE
           <i class="fas fa-angle-left right"></i>
         </p>
       </a>
@@ -61,13 +61,13 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('admin.bill-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Bill Table</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('admin.bill-info-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Bill Info Table</p>
           </a>
@@ -126,13 +126,13 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('admin.insert-bill-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Bill Table</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('admin.insert-bill-info-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Bill Info Table</p>
           </a>

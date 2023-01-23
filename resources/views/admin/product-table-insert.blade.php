@@ -1,11 +1,16 @@
 @extends('admin/layout')
 
+@push('styles')
+<!-- Link style -->
+<link rel="stylesheet" href="{{ asset('/css/admin/user-role-table.css') }}">
+@endpush
+
 @section('sidebar-menu')
 <!-- Sidebar Menu -->
 <nav class="mt-2">
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
     <li class="nav-item">
-      <a href="" class="nav-link active">
+      <a href="" class="nav-link">
         <i class="nav-icon fas fa-table"></i>
         <p>
           TABLE
@@ -44,7 +49,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('admin.category-child-table') }}" class="nav-link active">
+          <a href="{{ route('admin.category-child-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Category Child Table</p>
           </a>
@@ -70,7 +75,7 @@
       </ul>
     </li>
     <li class="nav-item">
-      <a href="" class="nav-link">
+      <a href="" class="nav-link active">
         <i class="nav-icon fas fa-edit"></i>
         <p>
           INSERT TABLE
@@ -115,7 +120,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('admin.insert-product-table') }}" class="nav-link">
+          <a href="{{ route('admin.insert-product-table') }}" class="nav-link active">
             <i class="far fa-circle nav-icon"></i>
             <p>Product Table</p>
           </a>
@@ -140,11 +145,11 @@
 @endsection
 
 @section('title')
-Category Child Table
+Insert User Role Table
 @endsection
 
 @section('title-sub')
-Category Child Table
+Insert User Role Table
 @endsection
 
 @section('content')
@@ -152,37 +157,44 @@ Category Child Table
   <div class="col-12">
     <div class="card">
       <div class="card-header d-flex justify-content-between">
-        <h3 class="card-title w-100 d-flex align-items-center">Category Child Table</h3>
-        <button class="create-data btn btn-success">Create</button>
+        <h3 class="card-title w-100 d-flex align-items-center">Insert User Table</h3>
+        <a href="{{ route('admin.user-role-table') }}" class="btn btn-success">Back</a>
       </div>
       <div class="card-body">
-        <table class="table table-bordered table-hover mb-3">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>ID CATEGORY DAD</th>
-              <th>NAME</th>
-              <th>ACTION</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach ($Category as $Categories)
-            <tr>
-              <td>{{ $Categories->id }}</td>
-              <td>{{ $Categories->category_dad_id }}</td>
-              <td>{{ $Categories->name }}</td>
-              <td>
-                <div class="w-100 d-flex">
-                  <button id="edit-{{ $Categories->id }}" class="edit-data btn btn-warning mr-2" data-name="{{ $Categories->name }}">Edit</button>
-                  <button id="delete-{{ $Categories->id }}" class="delete-data btn btn-danger">Delete</button>
-                </div>
-              </td>
-            </tr>
-            @endforeach
-        </table>
-        {{ $Category->links() }}
+        <form action="{{ route('admin.store.user-role-table') }}" method="post" enctype="multipart/form-data">
+          @csrf
+          <div class="row mb-4">
+            <div class="col-12">
+              <label for="id-user-add" class="form-label">User:</label>
+              <select id="id-user-add" class="form-control" name="users_id">
+                @foreach ($Users as $User)
+                <option value="{{ $User->id }}">{{ $User->name }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="id-role-add" class="form-label">Role:</label>
+              <select id="id-role-add" class="form-control" name="role_id">
+                @foreach ($Roles as $Role)
+                <option value="{{ $Role->id }}">{{ $Role->name }}</option>
+                @endforeach
+              </select>
+            </div>
+            @if (Session::has("failed"))
+            <span class="text-danger">*{{ Session::get('failed') }}</span>
+            @endif
+          </div>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-primary" type="submit">Save</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
 @endsection
+
+@push('scripts')
+<!-- Link script admin/user-role-table -->
+<script src="{{ asset('/js/admin/user-role-table.js') }}"></script>
+@endpush
