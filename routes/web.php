@@ -60,17 +60,15 @@ route::get('/index', [IndexController::class, 'index'])->name('index');
 
 // route::middleware('auth.admin')->group(function () {
 route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
+    // user table
     route::get('/user-table', [AdminUserTableController::class, 'index'])->name('user-table');
     route::get('/insert-user-table', function () {
         return view('admin.user-table-insert');
     })->name('insert-user-table');
     route::post('/update-user-table/{id}', [AdminUserTableController::class, 'update']);
     route::delete('/delete-user-table/{id}', [AdminUserTableController::class, 'destroy']);
-
-    route::get('/user-role-table', [AdminUserRoleTableController::class, 'index'])->name('user-role-table');
-    route::get('/insert-user-role-table', [AdminUserRoleTableController::class, 'create'])->name('insert-user-role-table');
-    route::delete('/delete-user-roles-table/{id}', [AdminUserRoleTableController::class, 'destroy']);
-
+    
+    // roles table
     route::get('/roles-table', [AdminRolesTableController::class, 'index'])->name('roles-table');
     route::get('/insert-roles-table', function () {
         return view('admin.roles-table-insert');
@@ -78,14 +76,22 @@ route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
     route::post('/update-roles-table/{id}', [AdminRolesTableController::class, 'update']);
     route::delete('/delete-roles-table/{id}', [AdminRolesTableController::class, 'destroy']);
 
+    // user-roles table
+    route::get('/user-role-table', [AdminUserRoleTableController::class, 'index'])->name('user-role-table');
+    route::get('/insert-user-role-table', [AdminUserRoleTableController::class, 'create'])->name('insert-user-role-table');
+    route::delete('/delete-user-roles-table/{id}', [AdminUserRoleTableController::class, 'destroy']);
+
     route::get('/shop-table', [AdminShopTableController::class, 'index'])->name('shop-table');
     route::get('/category-dad-table', [AdminCategoryDadTableController::class, 'index'])->name('category-dad-table');
     route::get('/category-child-table', [AdminCategoryChildTableController::class, 'index'])->name('category-child-table');
     route::get('/product-table', [AdminProductTableController::class, 'index'])->name('product-table');
-
+    
+    // store tables
     route::group(['prefix' => '', 'as' => 'store.'], function () {
         route::post('/insert-user-table', [AdminUserTableController::class, 'store'])->name('user-table');
         route::post('/insert-roles-table', [AdminRolesTableController::class, 'store'])->name('roles-table');
+        route::post('/insert-user-role-table', [AdminUserRoleTableController::class, 'store'])->name('user-role-table');
+        route::post('/insert-shop-table', [AdminShopTableController::class, 'store'])->name('user-role-table');
         route::post('/insert-user-role-table', [AdminUserRoleTableController::class, 'store'])->name('user-role-table');
     });
 });

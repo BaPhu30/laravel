@@ -90,13 +90,13 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('admin.roles-table') }}" class="nav-link">
+          <a href="{{ route('admin.insert-roles-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Roles Table</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('admin.user-role-table') }}" class="nav-link">
+          <a href="{{ route('admin.insert-user-role-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>User Role Table</p>
           </a>
