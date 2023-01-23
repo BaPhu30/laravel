@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Mail\SendMail;
 use App\Models\Users;
+use App\Models\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
@@ -43,13 +44,17 @@ class BuyerRegisterController extends Controller
         // Male
         $male = '1';
         
-        $value = $request->session()->get('key');
         $Users->name = $name;
         $Users->email = $request->email;
         $Users->password = $password;
         $Users->avatar = $avatar;
         $Users->male = $male;
         $Users->save();
+        $Users::find($request->email);
+        
+        $data['users_id'] = $Users->id;
+        $data['role_id'] = 2;
+        UserRole::create($data);
 
         return redirect()->route('buyer.login')->with('success', 'Bạn đã đăng ký tài khoản thành công!');
     }
