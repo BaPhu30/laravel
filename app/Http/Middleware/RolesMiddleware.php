@@ -54,6 +54,6 @@ class RolesMiddleware
             }
         }
         
-        return redirect()->back()->session()->flash('failed', 'Tài khoản hoặc mật khẩu không đúng');
+        return redirect()->back()->with('failed', 'Tài khoản hoặc mật khẩu không đúng');
     }
 }
