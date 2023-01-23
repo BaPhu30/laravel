@@ -1,5 +1,10 @@
 @extends('admin/layout')
 
+@push('styles')
+<!-- Link style -->
+<link rel="stylesheet" href="{{ asset('/css/admin/role-table.css') }}">
+@endpush
+
 @section('sidebar-menu')
 <!-- Sidebar Menu -->
 <nav class="mt-2">
@@ -70,30 +75,66 @@
       </ul>
     </li>
     <li class="nav-item">
-      <a href="#" class="nav-link">
+      <a href="" class="nav-link">
         <i class="nav-icon fas fa-edit"></i>
         <p>
-          Tables
+          INSERT TABLE
           <i class="fas fa-angle-left right"></i>
         </p>
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="pages/tables/simple.html" class="nav-link">
+          <a href="{{ route('admin.insert-user-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
-            <p>Simple Tables</p>
+            <p>User Table</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="pages/tables/data.html" class="nav-link">
+          <a href="{{ route('admin.insert-roles-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
-            <p>DataTables</p>
+            <p>Roles Table</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="pages/tables/jsgrid.html" class="nav-link">
+          <a href="{{ route('admin.insert-user-role-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
-            <p>jsGrid</p>
+            <p>User Role Table</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.insert-shop-table') }}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Shop Table</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.insert-category-dad-table') }}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Category Dad Table</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.insert-category-child-table') }}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Category Child Table</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.insert-product-table') }}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Product Table</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Bill Table</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Bill Info Table</p>
           </a>
         </li>
       </ul>
