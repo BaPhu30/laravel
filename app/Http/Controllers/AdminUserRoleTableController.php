@@ -48,11 +48,17 @@ class AdminUserRoleTableController extends Controller
             'users_id' => 'required',
             'role_id' => 'required',
         ]);
-        dd($request->users_id);
-        $Users = UserRole::where($id);
         $data = $request->all();
-        UserRole::create($data);
-        return redirect()->route('admin.user-role-table');
+
+        $UserRole = UserRole::where('users_id', $request->users_id)->first();
+        if(empty($UserRole)) {
+            UserRole::create($data);
+            return redirect()->route('admin.user-role-table');
+        } else {
+            $UserRole->delete();
+            UserRole::create($data);
+            return redirect()->route('admin.user-role-table');
+        }
     }
 
     /**
@@ -97,6 +103,8 @@ class AdminUserRoleTableController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Delete
+        $UserRole = UserRole::find($id);
+        $UserRole->delete();
     }
 }

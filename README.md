@@ -70,3 +70,9 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - Hot fix (bug fix nguy hiểm): hotfix/<tên account git>_<tên bug>
 - Build code mới: build/<tên tính năng mới>
 - release ver mới: release/<mã ver mới>
+
+
+
+
+
+
