@@ -1,3 +1,5 @@
+@import url("chatbox.css");
+
 .main__banner-hotword--wrapper {
   background: url(../img/index/bg-index.png) center top/100% no-repeat;
 }
