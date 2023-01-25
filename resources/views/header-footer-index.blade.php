@@ -288,6 +288,15 @@
 
     @include('chat-box')
 
+    <div style="
+      z-index: 9999;
+      position: fixed;
+      bottom: 12px;
+      right: 12px;
+    ">
+      <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" />
+    </div>
+
     <!-- Link script bootstrap -->
     <script src="{{ asset('/js/bootstrap.js') }}"></script>
     <!-- Link script jquery -->
@@ -348,7 +357,34 @@
         // Lắng nghe khi app đang chạy
         onMessage(messaging, (payload) => {
             console.log('hoand', payload);
-            // ...
+
+            const title = payload?.notification?.title;
+            const body = payload?.notification?.body;
+            
+            const div = document.createElement('div');
+            div.innerHTML = `
+              <div class="toast-header">
+                <!-- <img src="..." class="rounded me-2" alt="..."> -->
+                <strong class="me-auto">${title}</strong>
+                <small>11 mins ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body">
+                ${body}
+              </div>
+            `;
+
+            document.getElementById('liveToast').appendChild(div);
+
+            // const title = paylo
+            $("#liveToast").removeClass("hide");
+            $("#liveToast").addClass("show");
+
+            // auto close toast
+            setTimeout(()=>{
+              $("#liveToast").removeClass("show");
+              $("#liveToast").addClass("hide");
+            }, 3000)
         });
       </script>
     @stack('scripts')
