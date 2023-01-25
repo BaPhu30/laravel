@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\BillInfo;
 use App\Models\Users;
+use App\Models\Shop;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,8 +14,8 @@ class Bill extends Model
     use HasFactory;
     protected $table = 'bills';
     protected $fillable = [
-        'users_buyer_id',
-        'users_shop_id',
+        'user_id',
+        'shop_id',
     ];
 
     public function billsInfo()
@@ -22,13 +23,13 @@ class Bill extends Model
         return $this->hasMany(BillInfo::class, 'bill_id', 'id');
     }
 
-    public function userBuyer()
+    public function user()
     {
-        return $this->belongsTo(Users::class, 'users_buyer_id', 'id');
+        return $this->belongsTo(Users::class, 'user_id', 'id');
     }
 
-    public function userShop()
+    public function shop()
     {
-        return $this->belongsTo(Users::class, 'users_shop_id', 'id');
+        return $this->belongsTo(Shop::class, 'shop_id', 'id');
     }
 }

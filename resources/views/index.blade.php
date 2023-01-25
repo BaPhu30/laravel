@@ -1,5 +1,5 @@
 @extends('header-footer-index')
-
+<link rel="stylesheet" href="../../">
 <!-- Link css index -->
 @push('styles')
 <link href="{{ asset('/css/index.css') }}" rel="stylesheet">

@@ -2,7 +2,6 @@
   <div class="chat-box-button chat-box-on" id="btnChatBoxOn">
     Chat
   </div>
-
   <div class="chat-box" id="chatBox">
     <div class="header-chat-box">
       <div class="header-left">

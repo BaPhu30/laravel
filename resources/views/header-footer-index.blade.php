@@ -13,7 +13,6 @@
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
     <!-- Link css -->
     <link href="{{ asset('/css/header-footer-index.css') }}" rel="stylesheet">
-    <!-- Link chatbox -->
     <link href="{{ asset('/css/chatbox.css') }}" rel="stylesheet">
     @stack('styles')
 </head>
@@ -286,15 +285,72 @@
         </div>
     </footer>
     <!-- End Footer -->
-    
+
     @include('chat-box')
 
     <!-- Link script bootstrap -->
     <script src="{{ asset('/js/bootstrap.js') }}"></script>
     <!-- Link script jquery -->
     <script src="{{ asset('/js/jquery-3.6.3.min.js') }}"></script>
-    <!-- Link script chatbox -->
     <script src="{{ asset('/js/chatbox.js') }}"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-analytics.js";
+        import { 
+            getMessaging,
+            getToken,
+            onMessage, 
+        } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-messaging.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyApUvTvJDv8Qf8HvCl6Oy3xTLmcn1ZUFa4",
+            authDomain: "shopee-clone-47e23.firebaseapp.com",
+            projectId: "shopee-clone-47e23",
+            storageBucket: "shopee-clone-47e23.appspot.com",
+            messagingSenderId: "760436911597",
+            appId: "1:760436911597:web:29dc45143d45eb73768be4",
+            measurementId: "G-JRG32DL22G"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        // Retrieve Firebase Messaging object.
+        const messaging = getMessaging(app);
+        const publicVapidKey = "{{ env('WEB_PUSH_CERTIFICATES') }}";
+        // Add the public key generated from the console here.
+        getToken(messaging, {vapidKey: publicVapidKey})
+            .then((currentToken) => {
+                if (currentToken) {
+                    console.log("hoand token :", currentToken)
+                    sendTokenToServer(currentToken);
+                    // Send the token to your server and update the UI if necessary
+                    // ...
+                } else {
+                    // Show permission request UI
+                    console.log('No registration token available. Request permission to generate one.');
+                    // ...
+                }
+                }).catch((err) => {
+                console.log('An error occurred while retrieving token. ', err);
+                // ...
+            });
+
+        function sendTokenToServer(fcm_token) {
+        }
+
+        // Lắng nghe khi app đang chạy
+        onMessage(messaging, (payload) => {
+            console.log('hoand', payload);
+            // ...
+        });
+      </script>
     @stack('scripts')
 </body>
 
