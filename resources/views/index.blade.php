@@ -765,10 +765,7 @@
 <!-- End main category-child  -->
 @endsection
 
-@extends('chat-box')
-
 @push('scripts')
 <!-- Link script index -->
 <script src="{{ asset('/js/index.js') }}"></script>
-<script src="{{ asset('/js/chatbox.js') }}"></script>
 @endpush

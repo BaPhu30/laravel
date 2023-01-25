@@ -13,6 +13,7 @@
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
     <!-- Link css -->
     <link href="{{ asset('/css/header-footer-index.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/chatbox.css') }}" rel="stylesheet">
     @stack('styles')
 </head>
 
@@ -285,10 +286,13 @@
     </footer>
     <!-- End Footer -->
 
+    @include('chat-box')
+
     <!-- Link script bootstrap -->
     <script src="{{ asset('/js/bootstrap.js') }}"></script>
     <!-- Link script jquery -->
     <script src="{{ asset('/js/jquery-3.6.3.min.js') }}"></script>
+    <script src="{{ asset('/js/chatbox.js') }}"></script>
     @stack('scripts')
 </body>
 
