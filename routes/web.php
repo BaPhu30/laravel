@@ -132,7 +132,6 @@ route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
 // });
 
 route::get('/all-category', [AllCategoryController::class, 'index'])->name('all-category');
-
 route::get('/category-dad/{id}', [CategoryDadController::class, 'index'])->name('category-dad');
 route::get('/category-child/{id}', [CategoryChildController::class, 'index'])->name('category-child');
 
