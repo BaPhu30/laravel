@@ -351,7 +351,15 @@
                 // ...
             });
 
-        function sendTokenToServer(fcm_token) {
+        function sendTokenToServer(device_token) {
+          const user_id = "{{ Session::get('user')->id }}";
+          console.log("hoand user_id",user_id )
+          axios.post('/api/save-token', {
+            device_token,
+            user_id
+          }).then(res => {
+            console.log("hoand", res);
+          })
         }
 
         // Lắng nghe khi app đang chạy
@@ -376,7 +384,6 @@
 
             document.getElementById('liveToast').appendChild(div);
 
-            // const title = paylo
             $("#liveToast").removeClass("hide");
             $("#liveToast").addClass("show");
 
