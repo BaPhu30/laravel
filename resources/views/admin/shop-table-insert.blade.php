@@ -20,6 +20,13 @@ Insert User Role Table
 @endsection
 
 @section('content')
+
+@if (Session::has("failed"))
+<script>
+    alert("{{ Session::get('failed') }}")
+</script>
+@endif
+
 <div class="row">
   <div class="col-12">
     <div class="card">
@@ -32,8 +39,21 @@ Insert User Role Table
           @csrf
           <div class="row mb-4">
             <div class="col-12">
+              <label for="id-user-add" class="form-label">User Name:</label>
+              <select id="id-user-add" class="form-control" name="users_id">
+                @foreach ($Users as $User)
+                <option value="{{ $User->id }}">{{ $User->name }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="col-12">
               <label for="name-add" class="form-label">Name Shop:</label>
               <input id="name-add" class="w-100 form-control bg-white" type="text" placeholder="Name Shop" name="name">
+              @if($errors->get('name'))
+                @foreach($errors->get('name') as $errorName)
+                <span class="text-red">* {{$errorName}}</span>
+                @endforeach
+              @endif
             </div>
             <div class="col-12">
               <label for="avatar-add" class="form-label">Avatar Shop:</label>
@@ -57,6 +77,6 @@ Insert User Role Table
 @endsection
 
 @push('scripts')
-<!-- Link script admin/user-role-table -->
-<script src="{{ asset('/js/admin/user-role-table.js') }}"></script>
+<!-- Link script admin/shop-table -->
+<script src="{{ asset('/js/admin/shop-table.js') }}"></script>
 @endpush
