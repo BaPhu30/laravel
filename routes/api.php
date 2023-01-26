@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/save-token', [FCMController::class, 'index'])->name('index');
+Route::post(config('endpoints.UPDATE_TOKEN'), [FCMController::class, 'updateToken'])->name('updateToken');
