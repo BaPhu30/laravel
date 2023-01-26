@@ -354,7 +354,7 @@
         function sendTokenToServer(device_token) {
           const user_id = "{{ Session::get('user')->id }}";
           console.log("hoand user_id",user_id )
-          axios.post('/api/save-token', {
+          axios.post(`/api{{config('endpoints.UPDATE_TOKEN')}}`, {
             device_token,
             user_id
           }).then(res => {

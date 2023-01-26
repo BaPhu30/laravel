@@ -20,7 +20,19 @@ class IndexController extends Controller
         $CategoryChild3 = CategoryDad::with('categoryChildren')->offset(11)->limit(5)->get();   
         $CategoryChild4 = CategoryDad::with('categoryChildren')->offset(16)->limit(5)->get();   
         $CategoryChild5 = CategoryDad::with('categoryChildren')->offset(21)->limit(5)->get();   
+
+        $users = DB::table('users')->get();
         
-        return view('index', compact('CategoryDad', 'CategoryDad1', 'CategoryDad2', 'CategoryChild1', 'CategoryChild2', 'CategoryChild3', 'CategoryChild4', 'CategoryChild5'));
+        return view('index', compact(
+          'CategoryDad',
+          'CategoryDad1',
+          'CategoryDad2', 
+          'CategoryChild1', 
+          'CategoryChild2', 
+          'CategoryChild3', 
+          'CategoryChild4', 
+          'CategoryChild5',
+          'users',
+        ));
     }
 }

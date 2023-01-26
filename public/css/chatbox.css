@@ -192,3 +192,77 @@
     padding: 8px 10px 8px 12px;
     width: 100%;
 }
+
+.user-container {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    padding: 12px;  
+    cursor: pointer;
+}
+
+.user-container:hover{
+    background: #f7f8fb;
+}
+
+.user-container:focus{
+    background-color: #f7f8fb !important;
+}
+
+.user-container .user-avatar {
+    height: 32px;
+    min-width: 32px;
+    width: 32px;
+}
+
+.user-container .user-name-container {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    justify-content: center;
+    margin-left: 10px;
+    width: 156px;
+}
+
+.user-name-container .user-name {
+    justify-content: space-between;
+    color: #333;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 15px;
+    margin-right: 4px;
+    max-width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-name-container .new-message-container {
+    margin-top: 3px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-message-container .message {
+    color: #888;
+    font-size: 12px;
+    line-height: 14px;
+    margin-right: 4px;
+    max-width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.new-message-container .message-date {
+    align-items: center;
+    display: flex;
+    color: #bbb;
+    font-size: 12px;
+    line-height: 14px;
+    transform: scale(.91) translateX(2px);
+    white-space: nowrap;
+}   
