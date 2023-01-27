@@ -76,6 +76,7 @@ class AdminShopTableController extends Controller
                     }
                     dd($avatar);
                 } catch (\Exception $e) {
+                    dd($e);
                     logger($e->getMessage());
                 }
             }
