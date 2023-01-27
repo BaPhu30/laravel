@@ -32,8 +32,8 @@ Shop Table
           <thead>
             <tr>
               <th>ID</th>
-              <th>USER-ROLE-ID</th>
-              <th>NAME</th>
+              <th>USER-ID</th>
+              <th>NAME SHOP</th>
               <th>AVATAR</th>
               <th>SHOPEEMALL</th>
               <th>ACTION</th>
@@ -63,6 +63,52 @@ Shop Table
             @endforeach
         </table>
       </div>
+    </div>
+  </div>
+</div>
+@endsection
+
+@section('modal-edit')
+<div class="modal fade bd-example-modal-lg" id="modal-edit" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-content modal-lg">
+    <div class="modal-header">
+      <h2 class="modal-title" id="exampleModalLongTitle">Edit Shop Table</h2>
+      <button id="x-modal-edit" type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="row m-0">
+          <input id="id-edit" class="d-none" type="text">
+          <div class="col-12">
+            <label for="id-user-edit" class="form-label">User Name:</label>
+            <select id="id-user-add" class="form-control" name="users_id">
+              @foreach ($Users as $UserEdit)
+              <option value="{{ $UserEdit->id }}">{{ $UserEdit->name }}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="col-12">
+            <label for="name-edit" class="form-label">Name Shop:</label>
+            <input id="name-edit" class="w-100 form-control bg-white" type="text" placeholder="Name">
+          </div>
+          <div class="col-12">
+            <label for="avatar-edit" class="form-label">Avatar Shop:</label>
+            <label for="avatar-edit" class="btn btn-primary w-100 col-12">Choose Avatar Shop</label>
+            <input id="avatar-edit" class="d-none" type="file" accept="image/*" name="avatar">
+            <div class="gallery-avatar-edit"></div>
+          </div>
+          <div class="col-12">
+            <label for="shopee-mall-add" class="form-label">Shopee Mall:</label>
+            <input id="shopee-mall-add" class="bg-white" type="checkbox" name="shopee-mall">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button id="close-modal-edit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button id="edit-data" class="btn btn-primary" data-dismiss="modal">Save</button>
     </div>
   </div>
 </div>

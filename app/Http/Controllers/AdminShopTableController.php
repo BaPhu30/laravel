@@ -49,42 +49,42 @@ class AdminShopTableController extends Controller
             'name' => 'required|string|min:2|max:255|unique:shop',
         ]);
 
-        // User-role-id
-        $data['user_role_id'] = $request->users_id;
-
-        // Name Shop
-        $data['name'] = $request->name;
-
-        // Avatar
-        $avatar = 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/img/avatar_user.png';
-        foreach ($request->files as $file) {
-            try {
-                $name = Str::random(10);
-
-                $fileName = time() . '_' . $name;
-                $extension = $file->getClientOriginalExtension();
-                $fullpath = 'phu/shopee/admin/' . $fileName . '.' . $extension;
-                $upload = Storage::disk('s3')->put($fullpath, file_get_contents($file), 'public');
-
-                if ($upload) {
-                    $s3 = Storage::disk('s3')->getAdapter()->getClient();
-                    $avatar = $s3->getObjectUrl(env('AWS_BUCKET'), $fullpath);
-                }
-            } catch (\Exception $e) {
-                logger($e->getMessage());
-            }
-        }
-        $data['avatar'] = $avatar;
-
-        // Shopee-mall
-        if ($request->name == 'on') {
-            $data['shopee_mall'] = 1;
-        } else {
-            $data['shopee_mall'] = 0;
-        }
-
         $Shop = Shop::where('user_role_id', $request->users_id)->first();
-        if(empty($Shop)) {
+        if (empty($Shop)) {
+            // User-role-id
+            $data['user_role_id'] = $request->users_id;
+
+            // Name Shop
+            $data['name'] = $request->name;
+
+            // Avatar
+            $avatar = 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/img/avatar_user.png';
+            foreach ($request->files as $file) {
+                try {
+                    $name = Str::random(10);
+
+                    $fileName = time() . '_' . $name;
+                    $extension = $file->getClientOriginalExtension();
+                    $fullpath = 'phu/shopee/admin/' . $fileName . '.' . $extension;
+                    $upload = Storage::disk('s3')->put($fullpath, file_get_contents($file), 'public');
+
+                    if ($upload) {
+                        $s3 = Storage::disk('s3')->getAdapter()->getClient();
+                        $avatar = $s3->getObjectUrl(env('AWS_BUCKET'), $fullpath);
+                    }
+                } catch (\Exception $e) {
+                    logger($e->getMessage());
+                }
+            }
+            $data['avatar'] = $avatar;
+
+            // Shopee-mall
+            if ($request->name == 'on') {
+                $data['shopee_mall'] = 1;
+            } else {
+                $data['shopee_mall'] = 0;
+            }
+
             Shop::create($data);
             return redirect()->route('admin.shop-table');
         }
