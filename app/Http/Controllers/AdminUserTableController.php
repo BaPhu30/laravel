@@ -45,7 +45,7 @@ class AdminUserTableController extends Controller
                     $avatar = $s3->getObjectUrl(env('AWS_BUCKET'), $fullpath);
                 }
             } catch (\Exception $e) {
-                dd(logger($e->getMessage()));
+                logger($e->getMessage());
             }
         }
         $data['avatar'] = $avatar;
