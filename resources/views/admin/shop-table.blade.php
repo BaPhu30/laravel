@@ -56,7 +56,7 @@ Shop Table
               @endif
               <td>
                 <div class="w-100 d-flex">
-                  <button id="edit-{{ $Shop->shops->id }}" class="edit-data btn btn-warning mr-2" data-name="{{ $Shop->shops->name }}">Edit</button>
+                  <button id="edit-{{ $Shop->shops->id }}" class="edit-data btn btn-warning mr-2" data-name="{{ $Shop->shops->name }}" data-avatar="{{ $Shop->shops->avatar }}" data-shopee-mall="{{ $Shop->shops->shopee_mall }}" data-toggle="modal" data-target="#modal-edit">Edit</button>
                   <button id="delete-{{ $Shop->shops->id }}" class="delete-data btn btn-danger">Delete</button>
                 </div>
               </td>
@@ -85,23 +85,22 @@ Shop Table
         <div class="row m-0">
           <input id="id-edit" class="d-none" type="text">
           <div class="col-12">
-            <label for="id-user-edit" class="form-label">User Name:</label>
-            <select id="id-user-add" class="form-control" name="users_id">
-            </select>
-          </div>
-          <div class="col-12">
             <label for="name-edit" class="form-label">Name Shop:</label>
             <input id="name-edit" class="w-100 form-control bg-white" type="text" placeholder="Name">
           </div>
           <div class="col-12">
             <label for="avatar-edit" class="form-label">Avatar Shop:</label>
             <label for="avatar-edit" class="btn btn-primary w-100 col-12">Choose Avatar Shop</label>
-            <input id="avatar-edit" class="d-none" type="file" accept="image/*" name="avatar">
+            <input id="avatar-edit" class="d-none" type="file" accept="image/*">
             <div class="gallery-avatar-edit"></div>
           </div>
           <div class="col-12">
-            <label for="shopee-mall-add" class="form-label">Shopee Mall:</label>
-            <input id="shopee-mall-add" class="bg-white" type="checkbox" name="shopee-mall">
+            <label for="shopee-mall-edit" class="form-label">Shopee Mall:</label>
+            <input id="shopee-mall-edit" class="bg-white" type="checkbox">
+          </div>
+          <div class="col-12">
+            <label class="form-label">Avatar Old:</label>
+            <img id="avatar-old" class="col-3" alt="">
           </div>
         </div>
       </form>

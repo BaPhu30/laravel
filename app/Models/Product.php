@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Users;
+use App\Models\Shop;
 use App\Models\Comment;
 use App\Models\ProductInfo;
 use App\Models\CategoryChild;
@@ -18,17 +18,16 @@ class Product extends Model
     protected $fillable = [
         'id',
         'category_child_id',
-        'users_id',
+        'shop_id',
         'title',
-        'describe',
-        'price',
         'img',
         'video',
+        'sold',
     ];
 
-    public function user()
+    public function shop()
     {
-        return $this->belongsTo(Users::class, 'users_id', 'id');
+        return $this->belongsTo(Shop::class, 'shop_id', 'id');
     }
 
     public function comments()

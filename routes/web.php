@@ -84,7 +84,9 @@ route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
     // shop table
     route::get('/shop-table', [AdminShopTableController::class, 'index'])->name('shop-table');
     route::get('/insert-shop-table', [AdminShopTableController::class, 'create'])->name('insert-shop-table');
-    
+    route::post('/update-shop-table/{id}', [AdminShopTableController::class, 'update']);
+    route::delete('/delete-shop-table/{id}', [AdminShopTableController::class, 'destroy']);
+
     // category-dad table
     route::get('/category-dad-table', [AdminCategoryDadTableController::class, 'index'])->name('category-dad-table');
 

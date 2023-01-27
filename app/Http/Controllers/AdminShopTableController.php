@@ -34,7 +34,6 @@ class AdminShopTableController extends Controller
     public function create()
     {
         // Read
-        // $Users = DB::table('users')->select('users.name', 'user_role.id')->join('user_role', 'users.id', '=', 'user_role.users_id')->where('role_id', 3)->get();
         $Users = UserRole::with('user')->with('shops')->where('user_role.role_id',  '3')->get();
         return view('admin.shop-table-insert', compact('Users'));
     }
@@ -68,15 +67,12 @@ class AdminShopTableController extends Controller
                     $extension = $file->getClientOriginalExtension();
                     $fullpath = 'phu/shopee/admin/shop' . $fileName . '.' . $extension;
                     $upload = Storage::disk('s3')->put($fullpath, file_get_contents($file), 'public');
-                    dd($upload);
 
                     if ($upload) {
                         $s3 = Storage::disk('s3')->getAdapter()->getClient();
                         $avatar = $s3->getObjectUrl(env('AWS_BUCKET'), $fullpath);
                     }
-                    dd($avatar);
                 } catch (\Exception $e) {
-                    dd($e);
                     logger($e->getMessage());
                 }
             }
@@ -93,7 +89,7 @@ class AdminShopTableController extends Controller
             return redirect()->route('admin.shop-table');
         }
 
-        return redirect()->back()->with('failed', 'Tài khoản user này đã tồn tại shop');
+        return redirect()->back();
     }
 
     /**
@@ -127,7 +123,50 @@ class AdminShopTableController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|min:2|max:255|unique:shop',
+        ]);
+        
+        if ($validator->fails()) {
+            return response()->json(
+                [
+                    'Errors' => $validator->fails(),
+                ]
+            );
+        } else {
+            // Avatar
+            $avatar = $request->avatar;
+            foreach ($request->files as $file) {
+                try {
+                    $name = Str::random(10);
+
+                    $fileName = time() . '_' . $name;
+                    $extension = $file->getClientOriginalExtension();
+                    $fullpath = 'phu/shopee/admin/' . $fileName . '.' . $extension;
+                    $upload = Storage::disk('s3')->put($fullpath, file_get_contents($file), 'public');
+
+                    if ($upload) {
+                        $s3 = Storage::disk('s3')->getAdapter()->getClient();
+                        $avatar = $s3->getObjectUrl(env('AWS_BUCKET'), $fullpath);
+                    }
+                } catch (\Exception $e) {
+                    logger($e->getMessage());
+                }
+            }
+
+            // Update 
+            $Shop = new Shop();
+            $Shop = Shop::find($id);
+            $Shop->name = $request->name;
+            $Shop->avatar = $avatar;
+            $Shop->shopee_mall = $request->shopee_mall;
+            $Shop->update();
+            return response()->json(
+                [
+                    'Shop' => $Shop,
+                ]
+            );
+        }
     }
 
     /**
@@ -138,6 +177,8 @@ class AdminShopTableController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Delete
+        $Shop = Shop::find($id);
+        $Shop->delete();
     }
 }

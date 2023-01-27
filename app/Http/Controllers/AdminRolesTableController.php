@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Roles;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AdminRolesTableController extends Controller
 {
@@ -37,7 +38,12 @@ class AdminRolesTableController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255|unique:roles',
+        ]);
+        $data = $request->all();
+        Roles::create($data);
+        return redirect()->route('admin.roles-table');
     }
 
     /**
@@ -71,7 +77,28 @@ class AdminRolesTableController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255|unique:roles',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(
+                [
+                    'Errors' => $validator->fails(),
+                ]
+            );
+        } else {
+            // Update 
+            $Roles = new Roles();
+            $Roles = Roles::find($id);
+            $Roles->name = $request->name;
+            $Roles->update();
+            return response()->json(
+                [
+                    'Roles' => $Roles,
+                ]
+            );
+        }
     }
 
     /**

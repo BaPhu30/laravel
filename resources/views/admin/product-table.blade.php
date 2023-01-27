@@ -7,140 +7,7 @@
 
 @section('sidebar-menu')
 <!-- Sidebar Menu -->
-<nav class="mt-2">
-  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-  <li class="nav-item">
-      <a href="" class="nav-link active">
-        <i class="nav-icon fas fa-table"></i>
-        <p>
-          TABLE
-          <i class="fas fa-angle-left right"></i>
-        </p>
-      </a>
-      <ul class="nav nav-treeview">
-        <li class="nav-item">
-          <a href="{{ route('admin.user-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>User Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.roles-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Roles Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.user-role-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>User Role Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.shop-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Shop Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.category-dad-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Category Dad Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.category-child-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Category Child Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.product-table') }}" class="nav-link active">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Product Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.bill-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Bill Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.bill-info-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Bill Info Table</p>
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li class="nav-item">
-      <a href="" class="nav-link">
-        <i class="nav-icon fas fa-edit"></i>
-        <p>
-          INSERT TABLE
-          <i class="fas fa-angle-left right"></i>
-        </p>
-      </a>
-      <ul class="nav nav-treeview">
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-user-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>User Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-roles-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Roles Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-user-role-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>User Role Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-shop-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Shop Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-category-dad-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Category Dad Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-category-child-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Category Child Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-product-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Product Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-bill-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Bill Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-bill-info-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Bill Info Table</p>
-          </a>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+
 <!-- /.sidebar-menu -->
 @endsection
 
@@ -158,17 +25,17 @@ Product Table
     <div class="card">
       <div class="card-header d-flex justify-content-between">
         <h3 class="card-title w-100 d-flex align-items-center">Product Table</h3>
-        <button class="create-data btn btn-success">Create</button>
+        <a href="" class="btn btn-success">Create</a>
       </div>
       <div class="card-body">
         <table class="table table-bordered table-hover mb-3">
           <thead>
             <tr>
               <th>ID</th>
-              <th>ID CATEGORY CHILD</th>
-              <th>ID SHOP</th>
+              <th>NAME CATEGORY CHILD</th>
+              <th>NAME SHOP</th>
               <th>TITLE</th>
-              <th>IMG</th>
+              <th>IMAGES</th>
               <th>VIDEO</th>
               <th>SOLD</th>
               <th>ACTION</th>
@@ -178,15 +45,19 @@ Product Table
             @foreach ($Product as $Products)
             <tr>
               <td>{{ $Products->id }}</td>
-              <td>{{ $Products->category_child_id }}</td>
-              <td>{{ $Products->shop_id }}</td>
+              <td>{{ $Products->categoryChild->name }}</td>
+              <td>{{ $Products->shop->name }}</td>
               <td>{{ $Products->title }}</td>
-              <td>{{ $Products->img }}</td>
-              <td>{{ $Products->video }}</td>
+              <td class="d-flex justify-content-center">
+                <img src="{{ $Products->img }}">
+              </td>
+              <td class="d-flex justify-content-center">
+                <video src="{{ $Products->video }}" controls>
+              </td>
               <td>{{ $Products->sold }}</td>
               <td>
                 <div class="w-100 d-flex">
-                  <button id="edit-{{ $Products->id }}" class="edit-data btn btn-warning mr-2" data-name="{{ $Products->name }}">Edit</button>
+                  <button id="edit-{{ $Products->id }}" class="edit-data btn btn-warning mr-2" data-name="{{ $Products->name }}" data-toggle="modal" data-target="#modal-edit">Edit</button>
                   <button id="delete-{{ $Products->id }}" class="delete-data btn btn-danger">Delete</button>
                 </div>
               </td>
@@ -199,3 +70,36 @@ Product Table
   </div>
 </div>
 @endsection
+
+@section('modal-edit')
+<div class="modal fade bd-example-modal-lg" id="modal-edit" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-content modal-lg">
+    <div class="modal-header">
+      <h2 class="modal-title" id="exampleModalLongTitle">Edit Roles Table</h2>
+      <button id="x-modal-edit" type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="row m-0">
+          <input id="id-edit" class="d-none" type="text">
+          <div class="col-12">
+            <label for="name-edit" class="form-label">Name Role:</label>
+            <input id="name-edit" class="w-100 form-control bg-white" type="text" placeholder="Name">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button id="close-modal-edit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button id="edit-data" class="btn btn-primary" data-dismiss="modal">Save</button>
+    </div>
+  </div>
+</div>
+@endsection
+
+@push('scripts')
+<!-- Link script admin/product-table -->
+<script src="{{ asset('/js/admin/product-table.js') }}"></script>
+@endpush
