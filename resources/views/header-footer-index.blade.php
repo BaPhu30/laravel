@@ -286,7 +286,9 @@
     </footer>
     <!-- End Footer -->
 
-    @include('chat-box')
+    @if (Session::has("user"))
+      @include('chat-box')
+    @endif
 
     <div style="
       z-index: 9999;
