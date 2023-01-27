@@ -32,7 +32,7 @@ Shop Table
           <thead>
             <tr>
               <th>ID</th>
-              <th>USER-ID</th>
+              <th>NAME USER</th>
               <th>NAME SHOP</th>
               <th>AVATAR</th>
               <th>SHOPEEMALL</th>
@@ -41,27 +41,30 @@ Shop Table
           </thead>
           <tbody>
             @foreach ($Shops as $Shop)
+            @if($Shop->shops != null)
             <tr>
-              <td>{{ $Shop->id }}</td>
-              <td>{{ $Shop->user_role_id }}</td>
-              <td>{{ $Shop->name }}</td>
+              <td>{{ $Shop->shops->id }}</td>
+              <td>{{ $Shop->user->name }}</td>
+              <td>{{ $Shop->shops->name }}</td>
               <td class="d-flex justify-content-center">
-                <img src="{{ $Shop->avatar }}">
+                <img src="{{ $Shop->shops->avatar }}">
               </td>
-              @if($Shop->shopee_mall == '1')
+              @if($Shop->shops->shopee_mall == '1')
               <td>Shopee Mall</td>
               @else
               <td>Không</td>
               @endif
               <td>
                 <div class="w-100 d-flex">
-                  <button id="edit-{{ $Shop->id }}" class="edit-data btn btn-warning mr-2" data-name="{{ $Shop->name }}">Edit</button>
-                  <button id="delete-{{ $Shop->id }}" class="delete-data btn btn-danger">Delete</button>
+                  <button id="edit-{{ $Shop->shops->id }}" class="edit-data btn btn-warning mr-2" data-name="{{ $Shop->shops->name }}">Edit</button>
+                  <button id="delete-{{ $Shop->shops->id }}" class="delete-data btn btn-danger">Delete</button>
                 </div>
               </td>
             </tr>
+            @endif
             @endforeach
         </table>
+        {{ $Shops->links() }}
       </div>
     </div>
   </div>
@@ -84,9 +87,6 @@ Shop Table
           <div class="col-12">
             <label for="id-user-edit" class="form-label">User Name:</label>
             <select id="id-user-add" class="form-control" name="users_id">
-              @foreach ($Users as $UserEdit)
-              <option value="{{ $UserEdit->id }}">{{ $UserEdit->name }}</option>
-              @endforeach
             </select>
           </div>
           <div class="col-12">

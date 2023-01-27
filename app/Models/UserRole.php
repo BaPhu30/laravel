@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\BillInfo;
 use App\Models\Users;
+use App\Models\Roles;
 use App\Models\Shop;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -23,8 +24,13 @@ class UserRole extends Model
         return $this->belongsTo(Users::class, 'users_id', 'id');
     }
 
+    public function role()
+    {
+        return $this->belongsTo(Roles::class, 'role_id', 'id');
+    }
+
     public function shops()
     {
-        return $this->hasMany(Shop::class, 'user_role_id', 'id');
+        return $this->hasOne(Shop::class, 'user_role_id', 'id');
     }
 }

@@ -9,6 +9,7 @@ use App\Models\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
 class AdminShopTableController extends Controller
@@ -20,8 +21,8 @@ class AdminShopTableController extends Controller
      */
     public function index()
     {
-        $UserShops = UserRole::with('shops')->where('role_id', '2')->get();
-        $Shops = $UserShops[0]->shops;
+        // Read
+        $Shops = UserRole::with('user')->with('shops')->paginate(6);
         return view('admin.shop-table', compact('Shops'));
     }
 
@@ -33,7 +34,8 @@ class AdminShopTableController extends Controller
     public function create()
     {
         // Read
-        $Users = DB::table('users')->select('users.name', 'user_role.id')->join('user_role', 'users.id', '=', 'user_role.users_id')->where('role_id', 2)->get();
+        // $Users = DB::table('users')->select('users.name', 'user_role.id')->join('user_role', 'users.id', '=', 'user_role.users_id')->where('role_id', 3)->get();
+        $Users = UserRole::with('user')->with('shops')->where('user_role.role_id',  '3')->get();
         return view('admin.shop-table-insert', compact('Users'));
     }
 
@@ -62,16 +64,17 @@ class AdminShopTableController extends Controller
             foreach ($request->files as $file) {
                 try {
                     $name = Str::random(10);
-
                     $fileName = time() . '_' . $name;
                     $extension = $file->getClientOriginalExtension();
-                    $fullpath = 'phu/shopee/admin/' . $fileName . '.' . $extension;
+                    $fullpath = 'phu/shopee/admin/shop' . $fileName . '.' . $extension;
                     $upload = Storage::disk('s3')->put($fullpath, file_get_contents($file), 'public');
+                    dd($upload);
 
                     if ($upload) {
                         $s3 = Storage::disk('s3')->getAdapter()->getClient();
                         $avatar = $s3->getObjectUrl(env('AWS_BUCKET'), $fullpath);
                     }
+                    dd($avatar);
                 } catch (\Exception $e) {
                     logger($e->getMessage());
                 }
