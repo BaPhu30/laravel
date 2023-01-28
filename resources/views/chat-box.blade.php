@@ -39,7 +39,11 @@
             </div>
           </div>
           <div class="chat-input">
-            <textarea name="content" rows="3" style="width:100%" placeholder="Nhập nội dung tin nhắn"></textarea>
+            <input
+              style="width:100%" 
+              placeholder="Nhập nội dung tin nhắn"
+              id="inputMessage"
+            ></input>
           </div>
         </div>
       </div>
