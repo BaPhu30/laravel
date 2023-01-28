@@ -20,13 +20,6 @@ Insert Shop Table
 @endsection
 
 @section('content')
-
-@if (Session::has("failed"))
-<script>
-   alert("{{ Session::get('failed') }}")
-</script>
-@endif
-
 <div class="row">
    <div class="col-12">
       <div class="card">

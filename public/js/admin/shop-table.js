@@ -74,18 +74,13 @@ $(document).ready(function () {
         $("#id-edit").val(id)
         name = $(this).attr("data-name")
         $("#name-edit").val(name)
-        email = $(this).attr("data-email")
-        $("#email-edit").val(email)
-        password = $(this).attr("data-password")
-        $("#password-edit").val(password)
-        phone = $(this).attr("data-phone")
-        $("#phone-edit").val(phone)
         avatar = $(this).attr("data-avatar")
         $("#avatar-old").attr("src", avatar)
-        birthday = $(this).attr("data-birthday")
-        $("#birthday-edit").val(birthday)
-        male = $(this).attr("data-male")
-        $("#male-edit").val(male)
+        shopeeMall = $(this).attr("data-shopee-mall")
+        if (shopeeMall == 1) {
+            $("#shopee-mall-edit").click()
+        }
+
         // Div Edit
         $divEdit = $(this).parents().eq(2)
     })
@@ -104,18 +99,6 @@ $(document).ready(function () {
         name = $("#name-edit").val()
         Form.append("name", name)
 
-        // Append email to form
-        email = $("#email-edit").val()
-        Form.append("email", email)
-
-        // Append password to form
-        password = $("#password-edit").val()
-        Form.append("password", password)
-
-        // Append phone to form
-        phone = $("#phone-edit").val()
-        Form.append("phone", phone)
-
         // Append avatar old to form
         avatar = $("#avatar-old").attr("src")
         Form.append("avatar", avatar)
@@ -123,17 +106,18 @@ $(document).ready(function () {
         // Append file avatar new to form
         Form.append("file", $("#avatar-edit").get(0).files[0]);
 
-        // Append birthday to form
-        birthday = $("#birthday-edit").val()
-        Form.append("birthday", birthday)
-
-        // Append male to form
-        male = $("#male-edit").val()
-        Form.append("male", male)
+        // Append shopee mall to form
+        if ($("#shopee-mall-edit:checked").length == 1) {
+            shopeeMall = 1
+            Form.append("shopee_mall", shopeeMall)
+        } else if ($("#shopee-mall-edit:checked").length == 0) {
+            shopeeMall = 0
+            Form.append("shopee_mall", shopeeMall)
+        }
 
         $.ajax({
             type: 'POST',
-            url: '/admin/update-user-table/' + id,
+            url: '/admin/update-shop-table/' + id,
             async: false,
             enctype: 'multipart/form-data',
             processData: false,
@@ -142,34 +126,28 @@ $(document).ready(function () {
             success: function (response) {
                 alert('Update success')
                 $divEdit.html('')
-                $id = response.Users.id
-                $name = response.Users.name
-                $email = response.Users.email
-                $password = response.Users.password
-                $phone = response.Users.phone
-                $avatar = response.Users.avatar
-                $birthday = response.Users.birthday
-                $male = response.Users.male
-                if ($male == 1) {
-                    $namemale = "Nam"
+                $id = response.Shop.id
+                $nameUser = response.Shop.user_role_id
+                $nameShop = response.Shop.name
+                $avatar = response.Shop.avatar
+                $shopeeMall = response.Shop.shopee_mall
+                if ($shopeeMall == 1) {
+                    $shopeeMall = "Shopee Mall"
                 } else {
-                    $namemale = "Nữ"
+                    $shopeeMall = "Không"
                 }
                 $divEdit.append(
                     $(
                         `<td>${$id}</td>
-                        <td>${$name}</td>
-                        <td>${$email}</td>
-                        <td>${$password}</td>
-                        <td>${$phone}</td>
+                        <td>${$nameUser}</td>
+                        <td>${$nameShop}</td>
                         <td class="d-flex justify-content-center">
-                            <img src="${$avatar}">
+                        <img src="${$avatar}">
                         </td>
-                        <td>${$birthday}</td>
-                        <td>${$namemale}</td>
+                        <td>${$shopeeMall}</td>
                         <td>
                             <div class="w-100 d-flex">
-                                <button id="edit-${$id}" class="edit-data btn btn-warning mr-2" data-name="${$name}" data-email="${$email}" data-phone="${$phone}" data-password="${$password}" data-avatar="${$avatar}" data-birthday="${$birthday}" data-male="${$male}" data-toggle="modal" data-target="#modal-edit">Edit</button>
+                                <button id="edit-${$id}" class="edit-data btn btn-warning mr-2" data-name="${$name}" data-avatar="${$avatar}" data-shopee-mall="${$shopeeMall}" data-toggle="modal" data-target="#modal-edit">Edit</button>
                                 <button id="delete-${$id}" class="delete-data btn btn-danger">Delete</button>
                             </div>
                         </td>`
@@ -191,7 +169,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "DELETE",
-            url: '/admin/delete-user-table/' + id,
+            url: '/admin/delete-shop-table/' + id,
             data: {
                 'id': id
             },
