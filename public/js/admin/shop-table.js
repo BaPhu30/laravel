@@ -59,16 +59,6 @@ $(function () {
 })
 // End preview image, video modal
 
-$(document).ready(function () {
-    // Date picker
-    $(function () {
-        $('#reservationdate').datetimepicker({
-            format: 'L'
-        })
-    })
-})
-// End Date picker
-
 // Begin ajax
 $.ajaxSetup({
     headers: {

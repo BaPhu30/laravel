@@ -31,18 +31,16 @@ User Role Table
         <table class="table table-bordered table-hover mb-3">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>ID USERS</th>
-              <th>ID ROLE</th>
+              <th>NAME USERS</th>
+              <th>NAME ROLE</th>
               <th>ACTION</th>
             </tr>
           </thead>
           <tbody>
             @foreach ($UserRoles as $UserRole)
             <tr>
-              <td>{{ $UserRole->id }}</td>
-              <td>{{ $UserRole->users_id }}</td>
-              <td>{{ $UserRole->role_id }}</td>
+              <td>{{ $UserRole->user->name }}</td>
+              <td>{{ $UserRole->role->name }}</td>
               <td>
                 <div class="w-100 d-flex">
                   <button id="delete-{{ $UserRole->id }}" class="delete-data btn btn-danger">Delete</button>

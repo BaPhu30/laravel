@@ -36,21 +36,18 @@ class AdminUserTableController extends Controller
         foreach ($request->files as $file) {
             try {
                 $name = Str::random(10);
-
                 $fileName = time() . '_' . $name;
                 $extension = $file->getClientOriginalExtension();
-                $fullpath = 'phu/shopee/admin/' . $fileName . '.' . $extension;
+                $fullpath = 'phu/shopee/admin/user' . $fileName . '.' . $extension;
                 $upload = Storage::disk('s3')->put($fullpath, file_get_contents($file), 'public');
-
                 if ($upload) {
                     $s3 = Storage::disk('s3')->getAdapter()->getClient();
                     $avatar = $s3->getObjectUrl(env('AWS_BUCKET'), $fullpath);
                 }
             } catch (\Exception $e) {
-                logger($e->getMessage());
+                dd(logger($e->getMessage()));
             }
         }
-
         $data['avatar'] = $avatar;
 
         // Birthday

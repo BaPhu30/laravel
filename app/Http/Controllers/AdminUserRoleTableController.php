@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\UserRole;
 use App\Models\Users;
 use App\Models\Roles;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,7 +19,7 @@ class AdminUserRoleTableController extends Controller
     public function index()
     {
         // Read
-        $UserRoles = UserRole::paginate(6);
+        $UserRoles = UserRole::with('user')->with('role')->paginate(6);
         return view('admin.user-role-table', compact('UserRoles'));
     }
 
