@@ -31,13 +31,13 @@ Insert User Role Table
         <form action="{{ route('admin.store.roles-table') }}" method="post" enctype="multipart/form-data">
           @csrf
           <div class="row mb-4">
-          <div class="col-12">
+            <div class="col-12">
               <label for="name-add" class="form-label">Name Role:</label>
               <input id="name-add" class="w-100 form-control bg-white" type="text" placeholder="Name Role" name="name">
               @if($errors->get('name'))
-                @foreach($errors->get('name') as $errorName)
-                <span class="text-red">* {{$errorName}}</span>
-                @endforeach
+              @foreach($errors->get('name') as $errorName)
+              <span class="text-red">* {{$errorName}}</span>
+              @endforeach
               @endif
             </div>
           </div>

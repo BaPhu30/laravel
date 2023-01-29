@@ -18,9 +18,9 @@ class CreateProductTable extends Migration
             $table->unsignedBigInteger('category_child_id');
             $table->unsignedBigInteger('shop_id');
             $table->string('title', 255);
-            $table->string('img', 255);
-            $table->string('video', 255);
-            $table->integer('sold');
+            $table->text('img', 255);
+            $table->text('video', 255);
+            $table->string('sold');
             $table->timestamps();
         });
     }
