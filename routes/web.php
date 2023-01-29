@@ -89,18 +89,23 @@ route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
 
     // category-dad table
     route::get('/category-dad-table', [AdminCategoryDadTableController::class, 'index'])->name('category-dad-table');
+    route::get('/insert-category-dad-table', function () {
+        return view('admin.category-dad-table-insert');
+    })->name('insert-category-dad-table');
+    route::post('/update-category-dad-table/{id}', [AdminCategoryDadTableController::class, 'update']);
+    route::delete('/delete-category-dad-table/{id}', [AdminCategoryDadTableController::class, 'destroy']);
 
     // category-child table
     route::get('/category-child-table', [AdminCategoryChildTableController::class, 'index'])->name('category-child-table');
+    route::get('/insert-category-child-table', [AdminCategoryChildTableController::class, 'create'])->name('insert-category-child-table');
+    route::post('/update-category-child-table/{id}', [AdminCategoryChildTableController::class, 'update']);
+    route::delete('/delete-category-child-table/{id}', [AdminCategoryChildTableController::class, 'destroy']);
 
     // product table
     route::get('/product-table', [AdminProductTableController::class, 'index'])->name('product-table');
-
-    // bill table
-    route::get('/bill-table', [AdminBillTableController::class, 'index'])->name('bill-table');
-
-    // bill-info table
-    route::get('/bill-info-table', [AdminBillInfoTableController::class, 'index'])->name('bill-info-table');
+    route::get('/insert-product-table', [AdminProductTableController::class, 'create'])->name('insert-product-table');
+    route::post('/update-product-table/{id}', [AdminProductTableController::class, 'update']);
+    route::delete('/delete-product-table/{id}', [AdminProductTableController::class, 'destroy']);
 
     // store tables
     route::group(['prefix' => '', 'as' => 'store.'], function () {
@@ -124,12 +129,6 @@ route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
 
         // product table
         route::post('/insert-product-table', [AdminProductTableController::class, 'store'])->name('product-table');
-
-        // bill table
-        route::post('/insert-bill-table', [AdminBillTableController::class, 'store'])->name('bill-table');
-
-        // bill-info table
-        route::post('/insert-bill-info-table', [AdminBillInfoTableController::class, 'store'])->name('bill-info-table');
     });
 });
 // });

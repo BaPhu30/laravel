@@ -2,154 +2,21 @@
 
 @push('styles')
 <!-- Link style -->
-<link rel="stylesheet" href="{{ asset('/css/admin/user-role-table.css') }}">
+<link rel="stylesheet" href="{{ asset('/css/admin/category-child-table.css') }}">
 @endpush
 
 @section('sidebar-menu')
 <!-- Sidebar Menu -->
-<nav class="mt-2">
-  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-    <li class="nav-item">
-      <a href="" class="nav-link">
-        <i class="nav-icon fas fa-table"></i>
-        <p>
-          TABLE
-          <i class="fas fa-angle-left right"></i>
-        </p>
-      </a>
-      <ul class="nav nav-treeview">
-        <li class="nav-item">
-          <a href="{{ route('admin.user-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>User Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.roles-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Roles Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.user-role-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>User Role Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.shop-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Shop Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.category-dad-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Category Dad Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.category-child-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Category Child Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.product-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Product Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.bill-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Bill Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.bill-info-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Bill Info Table</p>
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li class="nav-item">
-      <a href="" class="nav-link active">
-        <i class="nav-icon fas fa-edit"></i>
-        <p>
-          INSERT TABLE
-          <i class="fas fa-angle-left right"></i>
-        </p>
-      </a>
-      <ul class="nav nav-treeview">
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-user-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>User Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-roles-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Roles Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-user-role-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>User Role Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-shop-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Shop Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-category-dad-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Category Dad Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-category-child-table') }}" class="nav-link active">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Category Child Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-product-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Product Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-bill-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Bill Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-bill-info-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Bill Info Table</p>
-          </a>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+
 <!-- /.sidebar-menu -->
 @endsection
 
 @section('title')
-Insert User Role Table
+Insert Category Child Table
 @endsection
 
 @section('title-sub')
-Insert User Role Table
+Insert Category Child Table
 @endsection
 
 @section('content')
@@ -157,32 +24,30 @@ Insert User Role Table
   <div class="col-12">
     <div class="card">
       <div class="card-header d-flex justify-content-between">
-        <h3 class="card-title w-100 d-flex align-items-center">Insert User Table</h3>
-        <a href="{{ route('admin.user-role-table') }}" class="btn btn-success">Back</a>
+        <h3 class="card-title w-100 d-flex align-items-center">Insert Category Child Table</h3>
+        <a href="{{ route('admin.category-child-table') }}" class="btn btn-success">Back</a>
       </div>
       <div class="card-body">
-        <form action="{{ route('admin.store.user-role-table') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('admin.store.category-child-table') }}" method="post" enctype="multipart/form-data">
           @csrf
           <div class="row mb-4">
             <div class="col-12">
-              <label for="id-user-add" class="form-label">User:</label>
-              <select id="id-user-add" class="form-control" name="users_id">
-                @foreach ($Users as $User)
-                <option value="{{ $User->id }}">{{ $User->name }}</option>
-                @endforeach
-              </select>
+              <label for="name-add" class="form-label">Name:</label>
+              <input id="name-add" class="w-100 form-control bg-white" type="text" placeholder="Name" name="name">
+              @if($errors->get('name'))
+              @foreach($errors->get('name') as $errorName)
+              <span class="text-red">* {{$errorName}}</span>
+              @endforeach
+              @endif
             </div>
             <div class="col-12">
-              <label for="id-role-add" class="form-label">Role:</label>
-              <select id="id-role-add" class="form-control" name="role_id">
-                @foreach ($Roles as $Role)
-                <option value="{{ $Role->id }}">{{ $Role->name }}</option>
+              <label for="id-category-dad-add" class="form-label">Name Category Dad:</label>
+              <select id="id-category-dad-add" class="form-control" name="category_dad_id">
+                @foreach ($CategoryDads as $CategoryDad)
+                <option value="{{ $CategoryDad->id }}">{{ $CategoryDad->name }}</option>
                 @endforeach
               </select>
             </div>
-            @if (Session::has("failed"))
-            <span class="text-danger">*{{ Session::get('failed') }}</span>
-            @endif
           </div>
           <div class="d-flex justify-content-end">
             <button class="btn btn-primary" type="submit">Save</button>
@@ -195,6 +60,6 @@ Insert User Role Table
 @endsection
 
 @push('scripts')
-<!-- Link script admin/user-role-table -->
-<script src="{{ asset('/js/admin/user-role-table.js') }}"></script>
+<!-- Link script admin/category-child-table -->
+<script src="{{ asset('/js/admin/category-child-table.js') }}"></script>
 @endpush

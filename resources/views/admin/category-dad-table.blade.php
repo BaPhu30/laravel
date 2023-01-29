@@ -1,141 +1,13 @@
 @extends('admin/layout')
 
+@push('styles')
+<!-- Link style -->
+<link rel="stylesheet" href="{{ asset('/css/admin/category-dad-table.css') }}">
+@endpush
+
 @section('sidebar-menu')
 <!-- Sidebar Menu -->
-<nav class="mt-2">
-  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-    <li class="nav-item">
-      <a href="" class="nav-link active">
-        <i class="nav-icon fas fa-table"></i>
-        <p>
-          TABLE
-          <i class="fas fa-angle-left right"></i>
-        </p>
-      </a>
-      <ul class="nav nav-treeview">
-        <li class="nav-item">
-          <a href="{{ route('admin.user-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>User Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.roles-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Roles Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.user-role-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>User Role Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.shop-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Shop Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.category-dad-table') }}" class="nav-link active">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Category Dad Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.category-child-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Category Child Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.product-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Product Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.bill-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Bill Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.bill-info-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Bill Info Table</p>
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li class="nav-item">
-      <a href="" class="nav-link">
-        <i class="nav-icon fas fa-edit"></i>
-        <p>
-          INSERT TABLE
-          <i class="fas fa-angle-left right"></i>
-        </p>
-      </a>
-      <ul class="nav nav-treeview">
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-user-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>User Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-roles-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Roles Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-user-role-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>User Role Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-shop-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Shop Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-category-dad-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Category Dad Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-category-child-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Category Child Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-product-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Product Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-bill-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Bill Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-bill-info-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Bill Info Table</p>
-          </a>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+
 <!-- /.sidebar-menu -->
 @endsection
 
@@ -153,7 +25,7 @@ Category Dad Table
     <div class="card">
       <div class="card-header d-flex justify-content-between">
         <h3 class="card-title w-100 d-flex align-items-center">Category Dad Table</h3>
-        <button class="create-data btn btn-success">Create</button>
+        <a href="{{ route('admin.insert-category-dad-table') }}" class="btn btn-success">Create</a>
       </div>
       <div class="card-body">
         <table class="table table-bordered table-hover mb-3">
@@ -170,10 +42,12 @@ Category Dad Table
             <tr>
               <td>{{ $Categories->id }}</td>
               <td>{{ $Categories->name }}</td>
-              <td>{{ $Categories->img }}</td>
+              <td>
+                <img src='{{ $Categories->img }}'>
+              </td>
               <td>
                 <div class="w-100 d-flex">
-                  <button id="edit-{{ $Categories->id }}" class="edit-data btn btn-warning mr-2" data-name="{{ $Categories->name }}">Edit</button>
+                  <button id="edit-{{ $Categories->id }}" class="edit-data btn btn-warning mr-2" data-name="{{ $Categories->name }}" data-img="{{ $Categories->img }}" data-toggle="modal" data-target="#modal-edit">Edit</button>
                   <button id="delete-{{ $Categories->id }}" class="delete-data btn btn-danger">Delete</button>
                 </div>
               </td>
@@ -186,3 +60,43 @@ Category Dad Table
   </div>
 </div>
 @endsection
+
+@section('modal-edit')
+<div class="modal fade bd-example-modal-lg" id="modal-edit" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-content modal-lg">
+    <div class="modal-header">
+      <h2 class="modal-title" id="exampleModalLongTitle">Edit Category Dad Table</h2>
+      <button id="x-modal-edit" type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="row m-0">
+          <input id="id-edit" class="d-none" type="text">
+          <div class="col-12">
+            <label for="name-edit" class="form-label">Name:</label>
+            <input id="name-edit" class="w-100 form-control bg-white" type="text" placeholder="Name">
+          </div>
+          <div class="col-12">
+            <label for="image-edit" class="form-label">Image:</label>
+            <label for="image-edit" class="btn btn-primary w-100 col-12">Choose Image</label>
+            <input id="image-edit" class="d-none" type="file" accept="image/*">
+            <div class="gallery-image-edit"></div>
+          </div>
+          <input id="image-old" class="d-none" type="text">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button id="close-modal-edit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button id="edit-data" class="btn btn-primary" data-dismiss="modal">Save</button>
+    </div>
+  </div>
+</div>
+@endsection
+
+@push('scripts')
+<!-- Link script admin/category-dad-table -->
+<script src="{{ asset('/js/admin/category-dad-table.js') }}"></script>
+@endpush
