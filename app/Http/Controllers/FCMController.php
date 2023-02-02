@@ -51,37 +51,39 @@ class FCMController extends Controller
   {
   }
 
-  public function joinRoom(Request $req)
+  public function joinChat(Request $req)
   {
     try {
-      $input = $req->all();
-      $user_id = $input['user_id'];
-      $message = $input['message'];
-      $to_user_id = $input['to_user_id'];
-      $room_id = $input['room_id'];
+      $body = $req->all();
+      $user_id = $body['user_id'];
+      $to_user_id = $body['to_user_id'];
 
-      $isExist = DB::table('user_room')
-      ->where('user_id', 65)
-      ->exists();
+      $isExistUserFrom = DB::table('user_room')
+        ->where('user_id', $user_id)
+        ->exists();
 
-      if ($isExist && $room_id) {
-        DB::table('messenger')->insert([
-          'user_id' => $user_id,
-          'room_id' => $room_id,
-          'text' => $message,
-          'messenger_parent_id' => $user_id,
-          'created_at' => Carbon::now()->toDateTimeString(),
+      $isExistUserTo = DB::table('user_room')
+        ->where('user_id', $to_user_id)
+        ->exists();
+
+      if ($isExistUserFrom && $isExistUserTo) {
+        // người gửi, người nhận đã có room
+
+        return response()->json([
+          'success' => true,
+          'message' => 'Get New Message Success.',
         ]);
       } else {
+        // người gửi, người nhận chưa có room
         $isCreateRoom =  DB::table('room')
-        ->insert([
-          'created_at' => Carbon::now()->toDateTimeString(),
-        ]);
+          ->insert([
+            'created_at' => Carbon::now()->toDateTimeString(),
+          ]);
 
         if ($isCreateRoom) {
           $newRoom =  DB::table('room')
-          ->latest('created_at')
-          ->first();
+            ->latest('created_at')
+            ->first();
 
           // add record user gửi
           DB::table('user_room')->insert([
@@ -96,18 +98,22 @@ class FCMController extends Controller
             'room_id' => $newRoom->id,
             'created_at' => Carbon::now()->toDateTimeString(),
           ]);
-
-          DB::table('messenger')->insert([
-            'user_id' => $user_id,
-            'room_id' => $newRoom->id,
-            'text' => $message,
-            'messenger_parent_id' => $user_id,
-            'created_at' => Carbon::now()->toDateTimeString(),
-          ]);
         }
+
+        return response()->json([
+          'success' => true,
+          'message' => 'Create Chat Success.'
+        ]);
       }
     } catch (\Throwable $th) {
-      //throw $th;
+      return response()->json([
+        'success' => false,
+        'message' => 'error'
+      ]);
     }
+  }
+
+  public function sendMessage(Request $req)
+  {
   }
 }

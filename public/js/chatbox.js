@@ -16,9 +16,3 @@ $("#inputMessage").keypress(function (e) {
     }
 });
 
-function onSelectUser(data) {
-    const user_id = data?.id;
-    const room_id = data?.room_id;
-
-    console.log("hoand onSelectUser", data);
-}

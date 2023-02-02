@@ -3,7 +3,6 @@
 return [
 
     'UPDATE_TOKEN' => '/update-token',
-    'JOIN_CHAT' => '',
-    'SEND_MESSAGE' => ''
-
+    'JOIN_CHAT' => '/join-chat',
+    'SEND_MESSAGE' => '/send-message',
 ];
