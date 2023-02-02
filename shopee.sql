@@ -2,10 +2,10 @@
 -- version 5.1.2
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th1 23, 2023 lúc 07:49 AM
--- Phiên bản máy phục vụ: 5.7.24
--- Phiên bản PHP: 8.0.1
+-- Host: localhost:3306
+-- Generation Time: Jan 29, 2023 at 01:24 PM
+-- Server version: 5.7.24
+-- PHP Version: 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `shopee`
+-- Database: `shopee`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `bills`
+-- Table structure for table `bills`
 --
 
 CREATE TABLE `bills` (
@@ -38,7 +38,7 @@ CREATE TABLE `bills` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `bill_info`
+-- Table structure for table `bill_info`
 --
 
 CREATE TABLE `bill_info` (
@@ -53,7 +53,7 @@ CREATE TABLE `bill_info` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `category_child`
+-- Table structure for table `category_child`
 --
 
 CREATE TABLE `category_child` (
@@ -65,7 +65,7 @@ CREATE TABLE `category_child` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `category_child`
+-- Dumping data for table `category_child`
 --
 
 INSERT INTO `category_child` (`id`, `category_dad_id`, `name`, `created_at`, `updated_at`) VALUES
@@ -355,7 +355,7 @@ INSERT INTO `category_child` (`id`, `category_dad_id`, `name`, `created_at`, `up
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `category_dad`
+-- Table structure for table `category_dad`
 --
 
 CREATE TABLE `category_dad` (
@@ -367,7 +367,7 @@ CREATE TABLE `category_dad` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `category_dad`
+-- Dumping data for table `category_dad`
 --
 
 INSERT INTO `category_dad` (`id`, `name`, `img`, `created_at`, `updated_at`) VALUES
@@ -401,7 +401,7 @@ INSERT INTO `category_dad` (`id`, `name`, `img`, `created_at`, `updated_at`) VAL
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `comment`
+-- Table structure for table `comment`
 --
 
 CREATE TABLE `comment` (
@@ -420,7 +420,7 @@ CREATE TABLE `comment` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `comment_like`
+-- Table structure for table `comment_like`
 --
 
 CREATE TABLE `comment_like` (
@@ -434,7 +434,7 @@ CREATE TABLE `comment_like` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -450,7 +450,38 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `migrations`
+-- Table structure for table `interactive`
+--
+
+CREATE TABLE `interactive` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `users_id` bigint(20) UNSIGNED NOT NULL,
+  `messenger_id` bigint(20) UNSIGNED NOT NULL,
+  `active` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messenger`
+--
+
+CREATE TABLE `messenger` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `room_id` bigint(20) UNSIGNED NOT NULL,
+  `text` varchar(255) COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `messenger_parent_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -460,7 +491,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -488,12 +519,20 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (22, '2023_01_04_034917_update_user_role_table', 1),
 (23, '2023_01_04_040344_update_shop_table', 1),
 (24, '2023_01_04_041218_update_product_table', 1),
-(25, '2023_01_12_042714_create_sessions_table', 2);
+(25, '2023_01_12_042714_create_sessions_table', 2),
+(26, '2023_01_25_074503_add_column_device_token', 3),
+(27, '2023_01_26_092409_create_user_room_table', 3),
+(28, '2023_01_26_092540_create_room_table', 3),
+(29, '2023_01_26_092651_create_messenger_table', 3),
+(30, '2023_01_26_092907_create_interactive_table', 3),
+(31, '2023_01_26_093421_update_user_room_table', 4),
+(32, '2023_01_26_093637_update_messenger_table', 4),
+(33, '2023_01_26_093727_update_interactive_table', 4);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `password_resets`
+-- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -505,7 +544,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `personal_access_tokens`
+-- Table structure for table `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
@@ -523,7 +562,7 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `product`
+-- Table structure for table `product`
 --
 
 CREATE TABLE `product` (
@@ -531,17 +570,27 @@ CREATE TABLE `product` (
   `category_child_id` bigint(20) UNSIGNED NOT NULL,
   `shop_id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `img` varchar(255) COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `video` varchar(255) COLLATE utf8mb4_vietnamese_ci NOT NULL,
-  `sold` int(11) NOT NULL,
+  `img` text COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `video` text COLLATE utf8mb4_vietnamese_ci NOT NULL,
+  `sold` varchar(255) COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`id`, `category_child_id`, `shop_id`, `title`, `img`, `video`, `sold`, `created_at`, `updated_at`) VALUES
+(2, 1, 11, 'Áo Sweater CUNA Áo Sweater Nam Nữ Form Rộng Chất Cotton Nỉ Ngoại Hàng Xuất Cao Cấp Trơn Cổ Tròn Dài Tay Local Brand', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674962212_W49AXgAn3A.jpg, https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674962215_sHM1ZXB0va.jpg, https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674962215_ErDX6o28bh.jpg, https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674962215_otTgaUU1Iz.jpg, https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674962215_4P1PB41WCm.jpg, https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674962215_4sA6ImMYiX.jpg, https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674962215_AbOHVBzSbh.jpg, https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674962216_ZisnjwPbg8.jpg, https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674962216_fKadaXvJgz.jpg', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674962216_W1GI4ZWhfB.mp4', '146.000', NULL, '2023-01-28 20:16:58'),
+(3, 1, 11, 'Áo phao nam nữ đều mặc được 𝑩𝑬𝑰𝑱𝑰𝑨𝑳𝑬 Áo khoác nam hàn quốc ulzzang có mũ hàng cao cấp', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674983288_B2GKIGnT52.jpg, https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674983288_f6FfoiyV6d.jfif, https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674983289_AFvoNwqfso.jpg, https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674983289_1v9Z1nIYOh.jfif', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674982575_2NxyCpnPEj.mp4', '123', NULL, '2023-01-29 02:08:09'),
+(4, 1, 10, '123123', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674984750_IC5btFh1rM.jfif, https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674984753_cAscShN6iU.jfif', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674984753_H44To4Xq8k.mp4', '123123', '2023-01-29 02:32:34', '2023-01-29 02:32:34'),
+(5, 2, 10, 'Áo Vets', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674984780_HZsVqCIpEV.jfif, https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674984782_kHqVpzn6X1.jfif, https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674984783_GbuiHuhh2G.jpg', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/product/1674984783_Qy3b4bpF3f.mp4', '100.000', '2023-01-29 02:33:04', '2023-01-29 02:33:04');
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `product_info`
+-- Table structure for table `product_info`
 --
 
 CREATE TABLE `product_info` (
@@ -562,7 +611,7 @@ CREATE TABLE `product_info` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `roles`
+-- Table structure for table `roles`
 --
 
 CREATE TABLE `roles` (
@@ -573,7 +622,7 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `roles`
+-- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
@@ -584,7 +633,19 @@ INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `sessions`
+-- Table structure for table `room`
+--
+
+CREATE TABLE `room` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sessions`
 --
 
 CREATE TABLE `sessions` (
@@ -599,7 +660,7 @@ CREATE TABLE `sessions` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `shop`
+-- Table structure for table `shop`
 --
 
 CREATE TABLE `shop` (
@@ -612,10 +673,18 @@ CREATE TABLE `shop` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
+--
+-- Dumping data for table `shop`
+--
+
+INSERT INTO `shop` (`id`, `user_role_id`, `name`, `avatar`, `shopee_mall`, `created_at`, `updated_at`) VALUES
+(10, 13, 'Shop 1', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/img/avatar_user.png', 0, '2023-01-27 10:57:15', '2023-01-27 10:57:15'),
+(11, 19, 'Shop 2', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/img/avatar_user.png', 0, '2023-01-27 10:57:21', '2023-01-27 10:57:21');
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -630,23 +699,31 @@ CREATE TABLE `users` (
   `male` varchar(10) COLLATE utf8mb4_vietnamese_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_vietnamese_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `device_token` varchar(255) COLLATE utf8mb4_vietnamese_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `phone`, `avatar`, `birthday`, `male`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Bá Phú', 'tabaphu0@gmail.com', NULL, '123123', '0763853612', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/1673191076_bf8aj16WUR.jpg', '1998-09-30', '1', NULL, '2023-01-08 08:17:57', '2023-01-08 08:17:57'),
-(44, '1', '1', NULL, '1', '1', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/img/avatar_user.png', '2023-01-09', '0', NULL, '2023-01-08 21:57:52', '2023-01-08 21:57:52'),
-(61, 'Tạ Bá Phú', 'tabaphu1@gmail.com', NULL, '$2y$10$v2XY9hDQeFi1Kj4UslcFFu5zv.QPRKqFdV3dioiY./2W8Hs3G4qJK', '0763853613', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/img/avatar_user.png', '2023-01-14', '0', NULL, '2023-01-13 21:13:08', '2023-01-13 21:13:08'),
-(62, 'Tạ Bá Phú 1', 'tabaphu4@gmail.com', NULL, '$2y$10$yF8Gwyko4HO4.aXvDfsiQeTFwN5icf1nIqAss692DFk23Tok966IG', '0763853615', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/img/avatar_user.png', '2023-01-14', '0', NULL, '2023-01-14 01:48:15', '2023-01-14 01:48:15');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `phone`, `avatar`, `birthday`, `male`, `remember_token`, `created_at`, `updated_at`, `device_token`) VALUES
+(1, 'Bá Phú', 'tabaphu0@gmail.com', NULL, '123123', '0763853612', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/1673191076_bf8aj16WUR.jpg', '1998-09-30', '1', NULL, '2023-01-08 08:17:57', '2023-01-08 08:17:57', NULL),
+(44, '1', '1', NULL, '1', '1', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/img/avatar_user.png', '2023-01-09', '0', NULL, '2023-01-08 21:57:52', '2023-01-08 21:57:52', NULL),
+(61, 'Tạ Bá Phú', 'tabaphu1@gmail.com', NULL, '$2y$10$v2XY9hDQeFi1Kj4UslcFFu5zv.QPRKqFdV3dioiY./2W8Hs3G4qJK', '0763853613', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/img/avatar_user.png', '2023-01-14', '0', NULL, '2023-01-13 21:13:08', '2023-01-26 16:29:11', 'e59wfvQDxh2JgxibjD9-MG:APA91bFy_gtPSXu5Olko526A9acz4s6nEpF8v2atp091LQIDebJ6nVT7EAB9Z8sV4IfMbROCfvb2cDWlwqG-a4j8VB_Oe-YON_maNtPql706Dtwkmkd5yxT024rlXm2phG07NVsVKyDk'),
+(62, 'Tạ Bá Phú 1', 'tabaphu4@gmail.com', NULL, '$2y$10$yF8Gwyko4HO4.aXvDfsiQeTFwN5icf1nIqAss692DFk23Tok966IG', '0763853615', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/img/avatar_user.png', '2023-01-14', '0', NULL, '2023-01-14 01:48:15', '2023-01-14 01:48:15', NULL),
+(63, '1674462449_9XTQW2Bo2F', 'tabaphu123@gmail.com', NULL, '$2y$10$5X3ZXj1AIKuayU1fUtI8XeVmbLVvsdBAjBjMZyVsO8lUhRRLLcPkG', NULL, 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/img/avatar_user.png', NULL, '1', NULL, '2023-01-23 01:27:29', '2023-01-23 01:27:29', NULL),
+(64, '1674462952_SlDArI5Qc4', 'tabaphu12@gmail.com', NULL, '$2y$10$vTWO1qgjcQHzphQZYtOVE.5a9cir0COut1L.HabOGJTKJdtjhoNYC', NULL, 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/img/avatar_user.png', NULL, '1', NULL, '2023-01-23 01:35:52', '2023-01-23 01:35:52', NULL),
+(65, '1674463208_BAKaOwQ1GU', 'tabaphu123123@gmail.com', NULL, '$2y$10$zZi4Ai3EVWLPzKPlvj22/.dZkM37sm8e2t.JLLywM0yVYA3mUD0IO', NULL, 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/img/avatar_user.png', NULL, '1', NULL, '2023-01-23 01:40:08', '2023-01-23 01:40:08', NULL),
+(66, '1674463310_sH6u8YwLoB', 'tabaphu9@gmail.com', NULL, '$2y$10$gGkJt2wkxyJr95o8a6krJuLQWBIHUY69LM4fQ1m3ZhvIFF6JuFp0S', NULL, 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/img/avatar_user.png', NULL, '1', NULL, '2023-01-23 01:41:50', '2023-01-23 01:41:50', NULL),
+(67, '1231231', '231231231@gmail.com', NULL, '$2y$10$RUyOZ6EgUdnCw98G2A0el.Nf6QUBgcKZYQK3klD8RQkIpA.sbAbw2', '3123123123', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/img/avatar_user.png', '2023-01-27', '0', NULL, '2023-01-27 08:33:42', '2023-01-27 08:33:42', NULL),
+(68, 'Shop 1123123', 'taba123123@gmail.com', NULL, '$2y$10$JgfHiTDG2ANdSfHnwuX5LeGuzfWkQH2aDkc9Pe5A63Z5NM68bL0lC', '0763853602', 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/img/avatar_user.png', '2023-01-27', '0', NULL, '2023-01-27 08:35:26', '2023-01-27 08:35:26', NULL),
+(69, '1674841565_Caow3izaqf', 'tabaphu123123123@gmail.com', NULL, '$2y$10$cyQm7lGzOxZlSyNW4Imeae9UXRxfDq27I35R59eQPSX.4oOcLb9NG', NULL, 'https://labtoidayhoc.s3.ap-southeast-1.amazonaws.com/phu/shopee/admin/img/avatar_user.png', NULL, '1', NULL, '2023-01-27 10:46:05', '2023-01-27 10:46:12', 'e59wfvQDxh2JgxibjD9-MG:APA91bFy_gtPSXu5Olko526A9acz4s6nEpF8v2atp091LQIDebJ6nVT7EAB9Z8sV4IfMbROCfvb2cDWlwqG-a4j8VB_Oe-YON_maNtPql706Dtwkmkd5yxT024rlXm2phG07NVsVKyDk');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `user_role`
+-- Table structure for table `user_role`
 --
 
 CREATE TABLE `user_role` (
@@ -658,19 +735,39 @@ CREATE TABLE `user_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `user_role`
+-- Dumping data for table `user_role`
 --
 
 INSERT INTO `user_role` (`id`, `users_id`, `role_id`, `created_at`, `updated_at`) VALUES
-(12, 1, 1, '2023-01-22 23:19:59', '2023-01-22 23:19:59'),
-(13, 61, 2, '2023-01-22 23:20:10', '2023-01-22 23:20:10');
+(13, 61, 3, '2023-01-22 23:20:10', '2023-01-22 23:20:10'),
+(19, 62, 3, '2023-01-26 21:23:57', '2023-01-26 21:23:57'),
+(20, 66, 3, '2023-01-26 21:24:05', '2023-01-26 21:24:05'),
+(22, 65, 3, '2023-01-26 21:24:27', '2023-01-26 21:24:27'),
+(23, 64, 2, '2023-01-26 21:24:38', '2023-01-26 21:24:38'),
+(24, 63, 2, '2023-01-26 21:27:01', '2023-01-26 21:27:01'),
+(25, 1, 1, '2023-01-26 21:27:34', '2023-01-26 21:27:34'),
+(26, 69, 2, '2023-01-27 10:46:05', '2023-01-27 10:46:05');
+
+-- --------------------------------------------------------
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Table structure for table `user_room`
+--
+
+CREATE TABLE `user_room` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `room_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `bills`
+-- Indexes for table `bills`
 --
 ALTER TABLE `bills`
   ADD PRIMARY KEY (`id`),
@@ -678,7 +775,7 @@ ALTER TABLE `bills`
   ADD KEY `bills_shop_id_foreign` (`shop_id`);
 
 --
--- Chỉ mục cho bảng `bill_info`
+-- Indexes for table `bill_info`
 --
 ALTER TABLE `bill_info`
   ADD PRIMARY KEY (`id`),
@@ -686,20 +783,20 @@ ALTER TABLE `bill_info`
   ADD KEY `bill_info_product_id_foreign` (`product_id`);
 
 --
--- Chỉ mục cho bảng `category_child`
+-- Indexes for table `category_child`
 --
 ALTER TABLE `category_child`
   ADD PRIMARY KEY (`id`),
   ADD KEY `category_child_category_dad_id_foreign` (`category_dad_id`);
 
 --
--- Chỉ mục cho bảng `category_dad`
+-- Indexes for table `category_dad`
 --
 ALTER TABLE `category_dad`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `comment`
+-- Indexes for table `comment`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`),
@@ -707,7 +804,7 @@ ALTER TABLE `comment`
   ADD KEY `comment_product_id_foreign` (`product_id`);
 
 --
--- Chỉ mục cho bảng `comment_like`
+-- Indexes for table `comment_like`
 --
 ALTER TABLE `comment_like`
   ADD PRIMARY KEY (`id`),
@@ -715,26 +812,42 @@ ALTER TABLE `comment_like`
   ADD KEY `comment_like_users_id_foreign` (`users_id`);
 
 --
--- Chỉ mục cho bảng `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Chỉ mục cho bảng `migrations`
+-- Indexes for table `interactive`
+--
+ALTER TABLE `interactive`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `interactive_users_id_foreign` (`users_id`),
+  ADD KEY `interactive_messenger_id_foreign` (`messenger_id`);
+
+--
+-- Indexes for table `messenger`
+--
+ALTER TABLE `messenger`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `messenger_user_id_foreign` (`user_id`),
+  ADD KEY `messenger_room_id_foreign` (`room_id`);
+
+--
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `password_resets`
+-- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Chỉ mục cho bảng `personal_access_tokens`
+-- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
@@ -742,7 +855,7 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Chỉ mục cho bảng `product`
+-- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`),
@@ -750,20 +863,26 @@ ALTER TABLE `product`
   ADD KEY `product_shop_id_foreign` (`shop_id`);
 
 --
--- Chỉ mục cho bảng `product_info`
+-- Indexes for table `product_info`
 --
 ALTER TABLE `product_info`
   ADD PRIMARY KEY (`id`),
   ADD KEY `product_info_product_id_foreign` (`product_id`);
 
 --
--- Chỉ mục cho bảng `roles`
+-- Indexes for table `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `sessions`
+-- Indexes for table `room`
+--
+ALTER TABLE `room`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sessions`
 --
 ALTER TABLE `sessions`
   ADD PRIMARY KEY (`id`),
@@ -771,21 +890,21 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
--- Chỉ mục cho bảng `shop`
+-- Indexes for table `shop`
 --
 ALTER TABLE `shop`
   ADD PRIMARY KEY (`id`),
   ADD KEY `shop_user_role_id_foreign` (`user_role_id`);
 
 --
--- Chỉ mục cho bảng `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Chỉ mục cho bảng `user_role`
+-- Indexes for table `user_role`
 --
 ALTER TABLE `user_role`
   ADD PRIMARY KEY (`id`),
@@ -793,162 +912,215 @@ ALTER TABLE `user_role`
   ADD KEY `user_role_role_id_foreign` (`role_id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- Indexes for table `user_room`
+--
+ALTER TABLE `user_room`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_room_user_id_foreign` (`user_id`),
+  ADD KEY `user_room_room_id_foreign` (`room_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `bills`
+-- AUTO_INCREMENT for table `bills`
 --
 ALTER TABLE `bills`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `bill_info`
+-- AUTO_INCREMENT for table `bill_info`
 --
 ALTER TABLE `bill_info`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `category_child`
+-- AUTO_INCREMENT for table `category_child`
 --
 ALTER TABLE `category_child`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=283;
 
 --
--- AUTO_INCREMENT cho bảng `category_dad`
+-- AUTO_INCREMENT for table `category_dad`
 --
 ALTER TABLE `category_dad`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT cho bảng `comment`
+-- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `comment_like`
+-- AUTO_INCREMENT for table `comment_like`
 --
 ALTER TABLE `comment_like`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `migrations`
+-- AUTO_INCREMENT for table `interactive`
 --
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+ALTER TABLE `interactive`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `personal_access_tokens`
+-- AUTO_INCREMENT for table `messenger`
+--
+ALTER TABLE `messenger`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `product`
+-- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT cho bảng `product_info`
+-- AUTO_INCREMENT for table `product_info`
 --
 ALTER TABLE `product_info`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `roles`
+-- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT cho bảng `shop`
+-- AUTO_INCREMENT for table `room`
 --
-ALTER TABLE `shop`
+ALTER TABLE `room`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `users`
+-- AUTO_INCREMENT for table `shop`
+--
+ALTER TABLE `shop`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
--- AUTO_INCREMENT cho bảng `user_role`
+-- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- AUTO_INCREMENT for table `user_room`
+--
+ALTER TABLE `user_room`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `bills`
+-- Constraints for table `bills`
 --
 ALTER TABLE `bills`
   ADD CONSTRAINT `bills_shop_id_foreign` FOREIGN KEY (`shop_id`) REFERENCES `shop` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `bills_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Các ràng buộc cho bảng `bill_info`
+-- Constraints for table `bill_info`
 --
 ALTER TABLE `bill_info`
   ADD CONSTRAINT `bill_info_bill_id_foreign` FOREIGN KEY (`bill_id`) REFERENCES `bills` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `bill_info_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE;
 
 --
--- Các ràng buộc cho bảng `category_child`
+-- Constraints for table `category_child`
 --
 ALTER TABLE `category_child`
   ADD CONSTRAINT `category_child_category_dad_id_foreign` FOREIGN KEY (`category_dad_id`) REFERENCES `category_dad` (`id`) ON DELETE CASCADE;
 
 --
--- Các ràng buộc cho bảng `comment`
+-- Constraints for table `comment`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `comment_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `comment_users_id_foreign` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Các ràng buộc cho bảng `comment_like`
+-- Constraints for table `comment_like`
 --
 ALTER TABLE `comment_like`
   ADD CONSTRAINT `comment_like_comment_id_foreign` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `comment_like_users_id_foreign` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Các ràng buộc cho bảng `product`
+-- Constraints for table `interactive`
+--
+ALTER TABLE `interactive`
+  ADD CONSTRAINT `interactive_messenger_id_foreign` FOREIGN KEY (`messenger_id`) REFERENCES `messenger` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `interactive_users_id_foreign` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `messenger`
+--
+ALTER TABLE `messenger`
+  ADD CONSTRAINT `messenger_room_id_foreign` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `messenger_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `product`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `product_category_child_id_foreign` FOREIGN KEY (`category_child_id`) REFERENCES `category_child` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `product_shop_id_foreign` FOREIGN KEY (`shop_id`) REFERENCES `shop` (`id`) ON DELETE CASCADE;
 
 --
--- Các ràng buộc cho bảng `product_info`
+-- Constraints for table `product_info`
 --
 ALTER TABLE `product_info`
   ADD CONSTRAINT `product_info_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE;
 
 --
--- Các ràng buộc cho bảng `shop`
+-- Constraints for table `shop`
 --
 ALTER TABLE `shop`
   ADD CONSTRAINT `shop_user_role_id_foreign` FOREIGN KEY (`user_role_id`) REFERENCES `user_role` (`id`) ON DELETE CASCADE;
 
 --
--- Các ràng buộc cho bảng `user_role`
+-- Constraints for table `user_role`
 --
 ALTER TABLE `user_role`
   ADD CONSTRAINT `user_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `user_role_users_id_foreign` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `user_room`
+--
+ALTER TABLE `user_room`
+  ADD CONSTRAINT `user_room_room_id_foreign` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `user_room_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

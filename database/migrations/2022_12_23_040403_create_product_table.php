@@ -19,7 +19,7 @@ class CreateProductTable extends Migration
             $table->unsignedBigInteger('shop_id');
             $table->string('title', 255);
             $table->text('img', 255);
-            $table->text('video', 255);
+            $table->text('video', 255)->nullable();
             $table->string('sold');
             $table->timestamps();
         });

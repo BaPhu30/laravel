@@ -19,7 +19,7 @@ class AdminUserRoleTableController extends Controller
     public function index()
     {
         // Read
-        $UserRoles = UserRole::with('user')->with('role')->paginate(6);
+        $UserRoles = UserRole::with('user')->with('role')->paginate(8);
         return view('admin.user-role-table', compact('UserRoles'));
     }
 
