@@ -55,7 +55,6 @@
             class="user-container" 
             onclick="onSelectUser({
               to_user_id: {{$user->user_id}},
-              room_id: {{$user->room_id}}
             })"
             id="{{$user->user_id}}"
           >
@@ -83,7 +82,6 @@
     const newBody = {
       user_id,
       to_user_id: params?.to_user_id,
-      room_id: params?.room_id,
     }
     axios.post(`/api{{config('endpoints.JOIN_CHAT')}}`, newBody)
       .then(res => {
