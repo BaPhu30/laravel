@@ -632,7 +632,7 @@
         </button>
     </div>
 </div>
-<!-- End main topsearch -->
+<!-- End main suggestions -->
 
 <!-- Begin main contentinfo-->
 <div class="main__contentinfo--wrapper pb-4">

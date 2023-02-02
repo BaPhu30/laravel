@@ -1,0 +1,134 @@
+img {
+  width: 100%;
+}
+
+.header {
+  background: linear-gradient(-180deg, #f53d2d, #f63);
+  height: 120px !important;
+}
+.header__navbar--social {
+  font-size: 13px;
+}
+.header__navbar--social a {
+  color: #fff !important;
+}
+.header__navbar--social .fa-facebook {
+  font-size: 17px;
+}
+.header__navbar--social .fa-instagram {
+  font-size: 20px;
+}
+.header__navbar--login-register {
+  font-size: 13px;
+}
+.header__navbar--login-register a {
+  color: #fff !important;
+}
+.header__navbar--user img {
+  width: 20px;
+  height: 20px;
+}
+.header__search--logo {
+  width: 200px;
+}
+.header__search--logo img {
+  width: 150px !important;
+}
+.header__search--search {
+  width: calc(100% - 400px);
+  font-size: 12px;
+}
+.header__search--search input {
+  border: none;
+  width: 100%;
+}
+.header__search--search input:focus-visible {
+  outline: white;
+}
+.header__search--search i {
+  background: linear-gradient(-180deg, #f53d2d, #f63);
+}
+.header__search--cart {
+  width: 200px;
+  font-size: 200%;
+}
+
+.main {
+  margin-top: 120px;
+}
+
+.footer {
+  background-color: #f5f5f5;
+}
+.footer__nav--div {
+  width: 20%;
+}
+.footer__nav--div-title {
+  font-size: 12px;
+  margin: 40px 0 20px;
+}
+.footer__nav--div-title-2 {
+  font-size: 12px;
+  margin: 20px 0 20px;
+}
+.footer__nav--div a {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+.footer__nav--div a:hover {
+  color: #ee4d2d !important;
+}
+.footer__nav--div-logo {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  padding: 4px;
+  background-color: #fff;
+  width: 60px;
+  height: 30px;
+  margin: 0 8px 8px 0;
+}
+.footer__nav--div-scan {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  padding: 4px;
+  background-color: #fff;
+  width: 88px;
+  height: 88px;
+  margin: 0 12px 0 0;
+}
+.footer__nav--div-app {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  padding: 4px;
+  background-color: #fff;
+  width: 76px;
+  height: 24px;
+  margin: 0 0 8px;
+}
+.footer__address--country {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.54);
+}
+.footer__address--country a {
+  color: rgba(0, 0, 0, 0.54);
+  margin-right: 2px;
+}
+.footer__address--policy {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.54);
+}
+.footer__address--policy a {
+  color: rgba(0, 0, 0, 0.54);
+  padding: 0 20px;
+}
+.footer__address--img img {
+  width: 120px;
+  height: 45px;
+}
+.footer__address--name {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+/*# sourceMappingURL=header-footer-user.css.map */

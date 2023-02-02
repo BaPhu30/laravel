@@ -95,8 +95,10 @@ class AdminProductTableController extends Controller
                 }
             }
             $video = implode(', ', $filesVideo);
+            $data['video'] = $video;
+        } else {
+            $data['video'] = NULL;
         }
-        $data['video'] = $video;
 
         Product::create($data);
         return redirect()->route('admin.product-table');

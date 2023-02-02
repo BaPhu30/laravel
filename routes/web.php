@@ -20,6 +20,7 @@ use App\Http\Controllers\AllCategoryController;
 
 use App\Http\Controllers\CategoryDadController;
 use App\Http\Controllers\CategoryChildController;
+use App\Http\Controllers\ProductController;
 
 // Buyer
 use App\Http\Controllers\BuyerLoginController;
@@ -111,22 +112,16 @@ route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
     route::group(['prefix' => '', 'as' => 'store.'], function () {
         // user table
         route::post('/insert-user-table', [AdminUserTableController::class, 'store'])->name('user-table');
-
         // roles table
         route::post('/insert-roles-table', [AdminRolesTableController::class, 'store'])->name('roles-table');
-
         // user-role table
         route::post('/insert-user-role-table', [AdminUserRoleTableController::class, 'store'])->name('user-role-table');
-
         // shop table
         route::post('/insert-shop-table', [AdminShopTableController::class, 'store'])->name('shop-table');
-
         // category-dad table
         route::post('/insert-category-dad-table', [AdminCategoryDadTableController::class, 'store'])->name('category-dad-table');
-
         // category-child table
         route::post('/insert-category-child-table', [AdminCategoryChildTableController::class, 'store'])->name('category-child-table');
-
         // product table
         route::post('/insert-product-table', [AdminProductTableController::class, 'store'])->name('product-table');
     });
@@ -136,11 +131,12 @@ route::group(['prefix' => '/admin', 'as' => 'admin.'], function () {
 route::get('/all-category', [AllCategoryController::class, 'index'])->name('all-category');
 route::get('/category-dad/{id}', [CategoryDadController::class, 'index'])->name('category-dad');
 route::get('/category-child/{id}', [CategoryChildController::class, 'index'])->name('category-child');
+route::get('/product/{id}', [ProductController::class, 'index'])->name('product');
 
 // Buyer
 route::group(['prefix' => '/buyer', 'as' => 'buyer.'], function () {
     route::get('/login', [BuyerLoginController::class, 'index'])->name('login');
-    route::post('/login/check', [BuyerLoginController::class, 'checkLogin'])->name('check-login')->middleware('auth.admin');
+    route::post('/login/check', [BuyerLoginController::class, 'checkLogin'])->name('check-login')->middleware('auth.buyer');
     route::get('/register', [BuyerRegisterController::class, 'index'])->name('register');
     route::post('/register/store', [BuyerRegisterController::class, 'store'])->name('register.store');
     route::get('/reset', [BuyerResetController::class, 'index'])->name('reset');

@@ -16,7 +16,7 @@ class AdminRolesTableController extends Controller
      */
     public function index()
     {
-        $Roles = Roles::paginate(6);
+        $Roles = Roles::paginate(10);
         return view('admin.roles-table', compact('Roles'));
     }
 

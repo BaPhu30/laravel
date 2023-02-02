@@ -10,12 +10,12 @@
         <div class="main__category--layer">
             <a class="me-2" href="{{route('index')}}">Dạo</a>
             >
-            <a class="ms-2" href="">Tất cả Danh mục</a>
+            <a class="ms-2" href="{{ route('all-category') }}">Tất cả Danh mục</a>
         </div>
         <div class="main__category--main bg-white">
             <div class="main__category--main-nav d-flex align-items-center">
                 @foreach ($CategoryDad as $CategoryDad1)
-                <a href="" class="main__category--main-nav-item d-flex justify-content-center align-items-center">
+                <a href="{{ route('category-dad', ['id' => $CategoryDad1->id]) }}" class="main__category--main-nav-item d-flex justify-content-center align-items-center">
                     <div class="main__category--main-nav-item-img">
                         <img src="{{ $CategoryDad1->img }}" alt="">
                     </div>
@@ -110,12 +110,12 @@
                     B
                 </div>
                 @foreach ($CategoryDadB as $DadB)
-                <a href="" class="main__category--main-info-categorydad">
+                <a href="{{ route('category-dad', ['id' => $DadB->id]) }}" class="main__category--main-info-categorydad">
                     {{ $DadB->name }}
                 </a>
                 <div class="main__category--main-info-categorychilds d-flex pb-4">
                     @foreach ($DadB->categoryChildren as $ChildB)
-                    <a href="" class="w-25">{{ $ChildB->name }}</a>
+                    <a href="{{ route('category-child', ['id' => $ChildB->id]) }}" class="w-25">{{ $ChildB->name }}</a>
                     @endforeach
                 </div>
                 @endforeach
@@ -123,12 +123,12 @@
                     C
                 </div>
                 @foreach ($CategoryDadC as $DadC)
-                <a href="" class="main__category--main-info-categorydad">
+                <a href="{{ route('category-dad', ['id' => $DadC->id]) }}" class="main__category--main-info-categorydad">
                     {{ $DadC->name }}
                 </a>
                 <div class="main__category--main-info-categorychilds d-flex pb-4">
                     @foreach ($DadC->categoryChildren as $ChildC)
-                    <a href="" class="w-25">{{ $ChildC->name }}</a>
+                    <a href="{{ route('category-child', ['id' => $ChildC->id]) }}" class="w-25">{{ $ChildC->name }}</a>
                     @endforeach
                 </div>
                 @endforeach
@@ -136,12 +136,12 @@
                     D
                 </div>
                 @foreach ($CategoryDadD as $DadD)
-                <a href="" class="main__category--main-info-categorydad">
+                <a href="{{ route('category-dad', ['id' => $DadD->id]) }}" class="main__category--main-info-categorydad">
                     {{ $DadD->name }}
                 </a>
                 <div class="main__category--main-info-categorychilds d-flex pb-4">
                     @foreach ($DadD->categoryChildren as $ChildD)
-                    <a href="" class="w-25">{{ $ChildD->name }}</a>
+                    <a href="{{ route('category-child', ['id' => $ChildD->id]) }}" class="w-25">{{ $ChildD->name }}</a>
                     @endforeach
                 </div>
                 @endforeach
@@ -149,12 +149,12 @@
                     G
                 </div>
                 @foreach ($CategoryDadG as $DadG)
-                <a href="" class="main__category--main-info-categorydad">
+                <a href="{{ route('category-dad', ['id' => $DadG->id]) }}" class="main__category--main-info-categorydad">
                     {{ $DadG->name }}
                 </a>
                 <div class="main__category--main-info-categorychilds d-flex pb-4">
                     @foreach ($DadG->categoryChildren as $ChildG)
-                    <a href="" class="w-25">{{ $ChildG->name }}</a>
+                    <a href="{{ route('category-child', ['id' => $ChildG->id]) }}" class="w-25">{{ $ChildG->name }}</a>
                     @endforeach
                 </div>
                 @endforeach
@@ -162,12 +162,12 @@
                     M
                 </div>
                 @foreach ($CategoryDadM as $DadM)
-                <a href="" class="main__category--main-info-categorydad">
+                <a href="{{ route('category-dad', ['id' => $DadM->id]) }}" class="main__category--main-info-categorydad">
                     {{ $DadM->name }}
                 </a>
                 <div class="main__category--main-info-categorychilds d-flex pb-4">
                     @foreach ($DadM->categoryChildren as $ChildM)
-                    <a href="" class="w-25">{{ $ChildM->name }}</a>
+                    <a href="{{ route('category-child', ['id' => $ChildM->id]) }}" class="w-25">{{ $ChildM->name }}</a>
                     @endforeach
                 </div>
                 @endforeach
@@ -175,12 +175,12 @@
                     N
                 </div>
                 @foreach ($CategoryDadN as $DadN)
-                <a href="" class="main__category--main-info-categorydad">
+                <a href="{{ route('category-dad', ['id' => $DadN->id]) }}" class="main__category--main-info-categorydad">
                     {{ $DadN->name }}
                 </a>
                 <div class="main__category--main-info-categorychilds d-flex pb-4">
                     @foreach ($DadN->categoryChildren as $ChildN)
-                    <a href="" class="w-25">{{ $ChildN->name }}</a>
+                    <a href="{{ route('category-child', ['id' => $ChildN->id]) }}" class="w-25">{{ $ChildN->name }}</a>
                     @endforeach
                 </div>
                 @endforeach
@@ -188,12 +188,12 @@
                     O
                 </div>
                 @foreach ($CategoryDadO as $DadO)
-                <a href="" class="main__category--main-info-categorydad">
+                <a href="{{ route('category-dad', ['id' => $DadO->id]) }}" class="main__category--main-info-categorydad">
                     {{ $DadO->name }}
                 </a>
                 <div class="main__category--main-info-categorychilds d-flex pb-4">
                     @foreach ($DadO->categoryChildren as $ChildO)
-                    <a href="" class="w-25">{{ $ChildO->name }}</a>
+                    <a href="{{ route('category-child', ['id' => $ChildO->id]) }}" class="w-25">{{ $ChildO->name }}</a>
                     @endforeach
                 </div>
                 @endforeach
@@ -201,12 +201,12 @@
                     P
                 </div>
                 @foreach ($CategoryDadP as $DadP)
-                <a href="" class="main__category--main-info-categorydad">
+                <a href="{{ route('category-dad', ['id' => $DadP->id]) }}" class="main__category--main-info-categorydad">
                     {{ $DadP->name }}
                 </a>
                 <div class="main__category--main-info-categorychilds d-flex pb-4">
                     @foreach ($DadP->categoryChildren as $ChildP)
-                    <a href="" class="w-25">{{ $ChildP->name }}</a>
+                    <a href="{{ route('category-child', ['id' => $ChildP->id]) }}" class="w-25">{{ $ChildP->name }}</a>
                     @endforeach
                 </div>
                 @endforeach
@@ -214,12 +214,12 @@
                     S
                 </div>
                 @foreach ($CategoryDadS as $DadS)
-                <a href="" class="main__category--main-info-categorydad">
+                <a href="{{ route('category-dad', ['id' => $DadS->id]) }}" class="main__category--main-info-categorydad">
                     {{ $DadS->name }}
                 </a>
                 <div class="main__category--main-info-categorychilds d-flex pb-4">
                     @foreach ($DadS->categoryChildren as $ChildS)
-                    <a href="" class="w-25">{{ $ChildS->name }}</a>
+                    <a href="{{ route('category-child', ['id' => $ChildS->id]) }}" class="w-25">{{ $ChildS->name }}</a>
                     @endforeach
                 </div>
                 @endforeach
@@ -227,12 +227,12 @@
                     T
                 </div>
                 @foreach ($CategoryDadT as $DadT)
-                <a href="" class="main__category--main-info-categorydad">
+                <a href="{{ route('category-dad', ['id' => $DadT->id]) }}" class="main__category--main-info-categorydad">
                     {{ $DadT->name }}
                 </a>
                 <div class="main__category--main-info-categorychilds d-flex pb-4">
                     @foreach ($DadT->categoryChildren as $ChildT)
-                    <a href="" class="w-25">{{ $ChildT->name }}</a>
+                    <a href="{{ route('category-child', ['id' => $ChildT->id]) }}" class="w-25">{{ $ChildT->name }}</a>
                     @endforeach
                 </div>
                 @endforeach
@@ -240,12 +240,12 @@
                     V
                 </div>
                 @foreach ($CategoryDadV as $DadV)
-                <a href="" class="main__category--main-info-categorydad">
+                <a href="{{ route('category-dad', ['id' => $DadV->id]) }}" class="main__category--main-info-categorydad">
                     {{ $DadV->name }}
                 </a>
                 <div class="main__category--main-info-categorychilds d-flex pb-4">
                     @foreach ($DadV->categoryChildren as $ChildV)
-                    <a href="" class="w-25">{{ $ChildV->name }}</a>
+                    <a href="{{ route('category-child', ['id' => $ChildV->id]) }}" class="w-25">{{ $ChildV->name }}</a>
                     @endforeach
                 </div>
                 @endforeach

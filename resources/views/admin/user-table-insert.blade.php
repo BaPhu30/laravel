@@ -60,18 +60,6 @@
             <p>Product Table</p>
           </a>
         </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.bill-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Bill Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.bill-info-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Bill Info Table</p>
-          </a>
-        </li>
       </ul>
     </li>
     <li class="nav-item">
@@ -123,18 +111,6 @@
           <a href="{{ route('admin.insert-product-table') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Product Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-bill-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Bill Table</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.insert-bill-info-table') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Bill Info Table</p>
           </a>
         </li>
       </ul>

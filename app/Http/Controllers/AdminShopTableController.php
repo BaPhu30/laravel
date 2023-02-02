@@ -34,7 +34,7 @@ class AdminShopTableController extends Controller
     public function create()
     {
         // Read
-        $Users = UserRole::with('user')->with('shops')->where('user_role.role_id',  '3')->get();
+        $Users = UserRole::with('user')->with('shops')->where('user_role.role_id', '2')->get();
         return view('admin.shop-table-insert', compact('Users'));
     }
 
@@ -79,7 +79,7 @@ class AdminShopTableController extends Controller
             $data['avatar'] = $avatar;
 
             // Shopee-mall
-            if ($request->name == 'on') {
+            if ($request->shopeeMall == 'on') {
                 $data['shopee_mall'] = 1;
             } else {
                 $data['shopee_mall'] = 0;
