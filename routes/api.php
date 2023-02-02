@@ -21,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post(config('endpoints.UPDATE_TOKEN'), [FCMController::class, 'updateToken'])->name('updateToken');
+Route::post(config('endpoints.JOIN_CHAT'), [FCMController::class, 'joinChat'])->name('joinChats');
+Route::post(config('endpoints.SEND_MESSAGE'), [FCMController::class, 'sendMessage'])->name('sendMessage');

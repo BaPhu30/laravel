@@ -51,28 +51,74 @@ class FCMController extends Controller
   {
   }
 
-  public function joinRoom(Request $req)
+  public function joinChat(Request $req)
   {
     try {
-      $input = $req->all();
-      $user_id = $input['user_id'];
-      $message = $input['message'];
-      $to_user_id = $input['to_user_id'];
-      $room_id = $input['room_id'];
+      $body = $req->all();
+      $user_id = $body['user_id'];
+      $to_user_id = $body['to_user_id'];
+      // $room_id = $body['room_id'];
 
       $isExist = DB::table('user_room')
-      ->where('user_id', 65)
+      ->where('user_id', $user_id)
       ->exists();
 
-      if ($isExist && $room_id) {
-        DB::table('messenger')->insert([
-          'user_id' => $user_id,
-          'room_id' => $room_id,
-          'text' => $message,
-          'messenger_parent_id' => $user_id,
-          'created_at' => Carbon::now()->toDateTimeString(),
-        ]);
+      if ($isExist) {
+        // nếu đã có room rồi thì check xem room đó có người chat chưa
+        $isExistToUser = DB::table('user_room')
+        ->where('user_id', $to_user_id)
+        ->exists();
+
+        if($isExistToUser){
+          // // có rồi thì get thông tin mới nhất của room
+          // $messages = DB::table('messenger')
+          //   ->where('room_id', $room_id)
+          //   ->get();
+
+          //   return response()->json([
+          //     'success' => true,
+          //     'message' => 'User join chat successfully.',
+          //     'data' => $messages
+          //   ]);
+        }else{
+          // // chưa có thì tạo room mới
+          // $isCreateRoom =  DB::table('room')
+          // ->insert([
+          //   'created_at' => Carbon::now()->toDateTimeString(),
+          // ]);
+
+          // if ($isCreateRoom) {
+          //   $newRoom =  DB::table('room')
+          //   ->latest('created_at')
+          //   ->first();
+  
+          //   // add record user gửi
+          //   DB::table('user_room')->insert([
+          //     'user_id' => $user_id,
+          //     'room_id' => $newRoom->id,
+          //     'created_at' => Carbon::now()->toDateTimeString(),
+          //   ]);
+  
+          //   // add record user nhận
+          //   DB::table('user_room')->insert([
+          //     'user_id' => $to_user_id,
+          //     'room_id' => $newRoom->id,
+          //     'created_at' => Carbon::now()->toDateTimeString(),
+          //   ]);
+
+          //   $messages = DB::table('messenger')
+          //   ->where('room_id', $newRoom->id)
+          //   ->get();
+
+          //   return response()->json([
+          //     'success' => true,
+          //     'message' => 'User join chat successfully.',
+          //     'data' => $messages
+          //   ]);
+          // }
+        }
       } else {
+        // user chưa có room thì tạo room mới
         $isCreateRoom =  DB::table('room')
         ->insert([
           'created_at' => Carbon::now()->toDateTimeString(),
@@ -97,17 +143,22 @@ class FCMController extends Controller
             'created_at' => Carbon::now()->toDateTimeString(),
           ]);
 
-          DB::table('messenger')->insert([
-            'user_id' => $user_id,
-            'room_id' => $newRoom->id,
-            'text' => $message,
-            'messenger_parent_id' => $user_id,
-            'created_at' => Carbon::now()->toDateTimeString(),
+          return response()->json([
+            'success' => true,
+            'message' => 'User create chat successfully.',
           ]);
         }
       }
     } catch (\Throwable $th) {
       //throw $th;
+      return response()->json([
+        'success' => false,
+        'message' => $th
+      ]);
     }
+  }
+
+  public function sendMessage(Request $req){
+
   }
 }
