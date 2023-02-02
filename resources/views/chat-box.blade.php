@@ -54,9 +54,10 @@
           <div 
             class="user-container" 
             onclick="onSelectUser({
-            id: {{$user->id}},
-            room_id: 12,
-            })" id="{{$user->id}}"
+              to_user_id: {{$user->user_id}},
+              room_id: {{$user->room_id}}
+            })"
+            id="{{$user->user_id}}"
           >
             <div class="user-avatar">
               <img src="{{$user->avatar}}"/> 
@@ -75,3 +76,21 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  function onSelectUser(params) {
+    const user_id = "{{ optional(Session::get('user'))->id }}"
+    const newBody = {
+      user_id,
+      to_user_id: params?.to_user_id,
+      room_id: params?.room_id,
+    }
+    axios.post(`/api{{config('endpoints.JOIN_CHAT')}}`, newBody)
+      .then(res => {
+        console.log("hoand", res);
+      })
+      .catch((err=>{
+        console.log("hoand err",err)
+      }))
+}
+</script>
