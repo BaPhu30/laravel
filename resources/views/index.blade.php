@@ -235,34 +235,38 @@
             <i class="main__flashsale--slider-next fa-solid fa-chevron-right"></i>
             <div class="main__flashsale--slider-main-wrapper">
                 <div class="main__flashsale--slider-main d-flex">
-                    <!-- Limit 16 -->
-                    <a href="" class="main__flashsale--slider-main-item">
+                    @foreach ($FlashSales as $FlashSale)
+                    <a href="{{ route('product', ['id' => $FlashSale->id]) }}" class="main__flashsale--slider-main-item">
                         <div class="main__flashsale--slider-main-item-img position-relative">
                             <div class="main__flashsale--slider-main-item-img-percent position-absolute">
-                                <div class="main__flashsale--slider-main-item-img-percent-top text-center">63%</div>
+                                <div class="main__flashsale--slider-main-item-img-percent-top text-center">0%</div>
                                 <div class="main__flashsale--slider-main-item-img-percent-bottom text-center text-white">Giảm</div>
                             </div>
                             <div class="main__flashsale--slider-main-item-img-background position-absolute">
                                 <img src="/img/index/index-flashsale/index-flashsale-bg.png" alt="">
                             </div>
                             <div class="main__flashsale--slider-main-item-img-product position-absolute">
-                                <img src="/img/index/index-flashsale/index-flashsale-1.png" alt="">
+                                @php
+                                $img = explode(', ', $FlashSale->img);
+                                echo "<img src='$img[0]'>" ;
+                                @endphp
                             </div>
                         </div>
                         <div class="main__flashsale--slider-main-item-price">
                             <div class="main__flashsale--slider-main-item-price-main d-flex justify-content-center align-items-center">
                                 <span>₫</span>
-                                <p class="m-0">59.000</p>
+                                <p class="m-0">{{ $FlashSale->sold }}</p>
                             </div>
                             <div class="main__flashsale--slider-main-item-price-sold position-relative">
                                 <div class="main__flashsale--slider-main-item-price-sold-main position-absolute text-white text-center w-100">
-                                    ĐÃ BÁN 106
+                                    ĐÃ BÁN 0
                                 </div>
                                 <div class="main__flashsale--slider-main-item-price-sold-live position-absolute"></div>
                                 <div class="main__flashsale--slider-main-item-price-sold-background position-absolute w-100"></div>
                             </div>
                         </div>
                     </a>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -373,160 +377,170 @@
                 <div class="main__shopeemall--slider-shop-main d-flex">
                     <div class="main__shopeemall--slider-shop-main-item">
                         <div>
+                            @foreach ($ShopeeMall1 as $ShopeeMall1)
                             <a href="">
-                                <div class="main__shopeemall--slider-shop-main-item-div">
-                                    <div class="main__shopeemall--slider-shop-main-item-div-img">
-                                        <img src="/img/index/index-shopeemall/index-shopeemall-shop-1.png" alt="">
+                                <div class="main__shopeemall--slider-shop-main-item-div mb-4">
+                                    <div class="main__shopeemall--slider-shop-main-item-div-product d-flex justify-content-center align-items-center">
+                                        @php
+                                        $img = explode(', ', $ShopeeMall1->img);
+                                        echo "<img src='$img[0]'>" ;
+                                        @endphp
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="main__shopeemall--slider-shop-main-item-div-shop d-flex justify-content-center align-items-center border rounded-pill">
+                                            <img src="{{ $ShopeeMall1->avatar }}">
+                                        </div>
                                     </div>
                                     <div class="main__shopeemall--slider-shop-main-item-div-title text-center">
-                                        Giảm đến 50%
+                                        Mua là có quà
                                     </div>
                                 </div>
                             </a>
-                            <a href="">
-                                <div class="main__shopeemall--slider-shop-main-item-div">
-                                    <div class="main__shopeemall--slider-shop-main-item-div-img">
-                                        <img src="/img/index/index-shopeemall/index-shopeemall-shop-2.png" alt="">
-                                    </div>
-                                    <div class="main__shopeemall--slider-shop-main-item-div-title text-center">
-                                        Giảm đến 50%
-                                    </div>
-                                </div>
-                            </a>
+                            @endforeach
                         </div>
                     </div>
                     <div class="main__shopeemall--slider-shop-main-item">
                         <div>
+                            @foreach ($ShopeeMall2 as $ShopeeMall2)
                             <a href="">
-                                <div class="main__shopeemall--slider-shop-main-item-div">
-                                    <div class="main__shopeemall--slider-shop-main-item-div-img">
-                                        <img src="/img/index/index-shopeemall/index-shopeemall-shop-1.png" alt="">
+                                <div class="main__shopeemall--slider-shop-main-item-div mb-4">
+                                    <div class="main__shopeemall--slider-shop-main-item-div-product d-flex justify-content-center align-items-center">
+                                        @php
+                                        $img = explode(', ', $ShopeeMall2->img);
+                                        echo "<img src='$img[0]'>" ;
+                                        @endphp
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="main__shopeemall--slider-shop-main-item-div-shop d-flex justify-content-center align-items-center border rounded-pill">
+                                            <img src="{{ $ShopeeMall2->avatar }}">
+                                        </div>
                                     </div>
                                     <div class="main__shopeemall--slider-shop-main-item-div-title text-center">
-                                        Giảm đến 50%
+                                        Mua là có quà
                                     </div>
                                 </div>
                             </a>
-                            <a href="">
-                                <div class="main__shopeemall--slider-shop-main-item-div">
-                                    <div class="main__shopeemall--slider-shop-main-item-div-img">
-                                        <img src="/img/index/index-shopeemall/index-shopeemall-shop-2.png" alt="">
-                                    </div>
-                                    <div class="main__shopeemall--slider-shop-main-item-div-title text-center">
-                                        Giảm đến 50%
-                                    </div>
-                                </div>
-                            </a>
+                            @endforeach
                         </div>
                     </div>
                     <div class="main__shopeemall--slider-shop-main-item">
                         <div>
+                            @foreach ($ShopeeMall3 as $ShopeeMall3)
                             <a href="">
-                                <div class="main__shopeemall--slider-shop-main-item-div">
-                                    <div class="main__shopeemall--slider-shop-main-item-div-img">
-                                        <img src="/img/index/index-shopeemall/index-shopeemall-shop-1.png" alt="">
+                                <div class="main__shopeemall--slider-shop-main-item-div mb-4">
+                                    <div class="main__shopeemall--slider-shop-main-item-div-product d-flex justify-content-center align-items-center">
+                                        @php
+                                        $img = explode(', ', $ShopeeMall3->img);
+                                        echo "<img src='$img[0]'>" ;
+                                        @endphp
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="main__shopeemall--slider-shop-main-item-div-shop d-flex justify-content-center align-items-center border rounded-pill">
+                                            <img src="{{ $ShopeeMall3->avatar }}">
+                                        </div>
                                     </div>
                                     <div class="main__shopeemall--slider-shop-main-item-div-title text-center">
-                                        Giảm đến 50%
+                                        Mua là có quà
                                     </div>
                                 </div>
                             </a>
-                            <a href="">
-                                <div class="main__shopeemall--slider-shop-main-item-div">
-                                    <div class="main__shopeemall--slider-shop-main-item-div-img">
-                                        <img src="/img/index/index-shopeemall/index-shopeemall-shop-2.png" alt="">
-                                    </div>
-                                    <div class="main__shopeemall--slider-shop-main-item-div-title text-center">
-                                        Giảm đến 50%
-                                    </div>
-                                </div>
-                            </a>
+                            @endforeach
                         </div>
                     </div>
                     <div class="main__shopeemall--slider-shop-main-item">
                         <div>
+                            @foreach ($ShopeeMall4 as $ShopeeMall4)
                             <a href="">
-                                <div class="main__shopeemall--slider-shop-main-item-div">
-                                    <div class="main__shopeemall--slider-shop-main-item-div-img">
-                                        <img src="/img/index/index-shopeemall/index-shopeemall-shop-1.png" alt="">
+                                <div class="main__shopeemall--slider-shop-main-item-div mb-4">
+                                    <div class="main__shopeemall--slider-shop-main-item-div-product d-flex justify-content-center align-items-center">
+                                        @php
+                                        $img = explode(', ', $ShopeeMall4->img);
+                                        echo "<img src='$img[0]'>" ;
+                                        @endphp
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="main__shopeemall--slider-shop-main-item-div-shop d-flex justify-content-center align-items-center border rounded-pill">
+                                            <img src="{{ $ShopeeMall4->avatar }}">
+                                        </div>
                                     </div>
                                     <div class="main__shopeemall--slider-shop-main-item-div-title text-center">
-                                        Giảm đến 50%
+                                        Mua là có quà
                                     </div>
                                 </div>
                             </a>
-                            <a href="">
-                                <div class="main__shopeemall--slider-shop-main-item-div">
-                                    <div class="main__shopeemall--slider-shop-main-item-div-img">
-                                        <img src="/img/index/index-shopeemall/index-shopeemall-shop-2.png" alt="">
-                                    </div>
-                                    <div class="main__shopeemall--slider-shop-main-item-div-title text-center">
-                                        Giảm đến 50%
-                                    </div>
-                                </div>
-                            </a>
+                            @endforeach
                         </div>
                     </div>
                     <div class="main__shopeemall--slider-shop-main-item">
                         <div>
+                            @foreach ($ShopeeMall5 as $ShopeeMall5)
                             <a href="">
-                                <div class="main__shopeemall--slider-shop-main-item-div">
-                                    <div class="main__shopeemall--slider-shop-main-item-div-img">
-                                        <img src="/img/index/index-shopeemall/index-shopeemall-shop-1.png" alt="">
+                                <div class="main__shopeemall--slider-shop-main-item-div mb-4">
+                                    <div class="main__shopeemall--slider-shop-main-item-div-product d-flex justify-content-center align-items-center">
+                                        @php
+                                        $img = explode(', ', $ShopeeMall5->img);
+                                        echo "<img src='$img[0]'>" ;
+                                        @endphp
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="main__shopeemall--slider-shop-main-item-div-shop d-flex justify-content-center align-items-center border rounded-pill">
+                                            <img src="{{ $ShopeeMall5->avatar }}">
+                                        </div>
                                     </div>
                                     <div class="main__shopeemall--slider-shop-main-item-div-title text-center">
-                                        Giảm đến 50%
+                                        Mua là có quà
                                     </div>
                                 </div>
                             </a>
-                            <a href="">
-                                <div class="main__shopeemall--slider-shop-main-item-div">
-                                    <div class="main__shopeemall--slider-shop-main-item-div-img">
-                                        <img src="/img/index/index-shopeemall/index-shopeemall-shop-2.png" alt="">
-                                    </div>
-                                    <div class="main__shopeemall--slider-shop-main-item-div-title text-center">
-                                        Giảm đến 50%
-                                    </div>
-                                </div>
-                            </a>
+                            @endforeach
                         </div>
                     </div>
                     <div class="main__shopeemall--slider-shop-main-item">
                         <div>
+                            @foreach ($ShopeeMall6 as $ShopeeMall6)
                             <a href="">
-                                <div class="main__shopeemall--slider-shop-main-item-div">
-                                    <div class="main__shopeemall--slider-shop-main-item-div-img">
-                                        <img src="/img/index/index-shopeemall/index-shopeemall-shop-1.png" alt="">
+                                <div class="main__shopeemall--slider-shop-main-item-div mb-4">
+                                    <div class="main__shopeemall--slider-shop-main-item-div-product d-flex justify-content-center align-items-center">
+                                        @php
+                                        $img = explode(', ', $ShopeeMall6->img);
+                                        echo "<img src='$img[0]'>" ;
+                                        @endphp
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="main__shopeemall--slider-shop-main-item-div-shop d-flex justify-content-center align-items-center border rounded-pill">
+                                            <img src="{{ $ShopeeMall6->avatar }}">
+                                        </div>
                                     </div>
                                     <div class="main__shopeemall--slider-shop-main-item-div-title text-center">
-                                        Giảm đến 50%
+                                        Mua là có quà
                                     </div>
                                 </div>
                             </a>
-                            <a href="">
-                                <div class="main__shopeemall--slider-shop-main-item-div">
-                                    <div class="main__shopeemall--slider-shop-main-item-div-img">
-                                        <img src="/img/index/index-shopeemall/index-shopeemall-shop-2.png" alt="">
-                                    </div>
-                                    <div class="main__shopeemall--slider-shop-main-item-div-title text-center">
-                                        Giảm đến 50%
-                                    </div>
-                                </div>
-                            </a>
+                            @endforeach
                         </div>
                     </div>
                     <div class="main__shopeemall--slider-shop-main-item">
                         <div>
+                            @foreach ($ShopeeMall7 as $ShopeeMall7)
                             <a href="">
-                                <div class="main__shopeemall--slider-shop-main-item-div">
-                                    <div class="main__shopeemall--slider-shop-main-item-div-img">
-                                        <img src="/img/index/index-shopeemall/index-shopeemall-shop-2.png" alt="">
+                                <div class="main__shopeemall--slider-shop-main-item-div mb-4">
+                                    <div class="main__shopeemall--slider-shop-main-item-div-product d-flex justify-content-center align-items-center">
+                                        @php
+                                        $img = explode(', ', $ShopeeMall7->img);
+                                        echo "<img src='$img[0]'>" ;
+                                        @endphp
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="main__shopeemall--slider-shop-main-item-div-shop d-flex justify-content-center align-items-center border rounded-pill">
+                                            <img src="{{ $ShopeeMall7->avatar }}">
+                                        </div>
                                     </div>
                                     <div class="main__shopeemall--slider-shop-main-item-div-title text-center">
-                                        Giảm đến 50%
+                                        Mua là có quà
                                     </div>
                                 </div>
                             </a>
+                            @endforeach
                             <a class="main__shopeemall--slider-shop-main-item-seemore d-flex justify-content-center align-items-center">
                                 Xem Tất Cả
                                 <i class="fa-solid fa-chevron-right p-2"></i>
@@ -560,23 +574,27 @@
             <i class="main__topsearch--slider-next fa-solid fa-chevron-right"></i>
             <div class="main__topsearch--slider-main-wrapper">
                 <div class="main__topsearch--slider-main d-flex">
-                    <!-- Limit 21 -->
-                    <a href="" class="main__topsearch--slider-main-item">
+                    @foreach ($TopSearchs as $TopSearch)
+                    <a href="{{ route('product', ['id' => $TopSearch->id]) }}" class="main__topsearch--slider-main-item">
                         <div class="main__topsearch--slider-main-item-img position-relative">
                             <div class="main__topsearch--slider-main-item-img-percent position-absolute">
                                 <img src="/img/index/index-topsearch/index-topsearch-percent.png" alt="">
                             </div>
                             <div class="main__topsearch--slider-main-item-img-product position-absolute">
-                                <img src="/img/index/index-topsearch/index-topsearch-1.jfif" alt="">
+                                @php
+                                $img = explode(', ', $TopSearch->img);
+                                echo "<img src='$img[0]'>" ;
+                                @endphp
                             </div>
                             <div class="main__topsearch--slider-main-item-img-background position-absolute text-center text-white">
-                                Bán 29k+ / tháng
+                                Bán 0 / tháng
                             </div>
                         </div>
                         <div class="main__topsearch--slider-main-item-name">
-                            Nón Bảo Hiểm Nón Sơn
+                            {{ $TopSearch->title }}
                         </div>
                     </a>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -590,8 +608,8 @@
         GỢI Ý HÔM NAY
     </div>
     <div class="main__suggestions--main d-flex flex-wrap container mb-4">
-        <!-- Limit 48 -->
-        <a href="">
+        @foreach ($Suggestions as $Suggestion)
+        <a href="{{ route('product', ['id' => $Suggestion->id]) }}">
             <div class="main__suggestions--main-post bg-white">
                 <div class="main__suggestions--main-post-img position-relative">
                     <div class="main__suggestions--main-post-img-percent position-absolute">
@@ -602,29 +620,33 @@
                         <img src="/img/index/index-flashsale/index-flashsale-bg.png" alt="">
                     </div>
                     <div class="main__suggestions--main-post-img-product position-absolute">
-                        <img src="/img/index/index-flashsale/index-flashsale-1.png" alt="">
+                        @php
+                        $img = explode(', ', $Suggestion->img);
+                        echo "<img src='$img[0]'>" ;
+                        @endphp
                     </div>
                 </div>
                 <div class="main__suggestions--main-post-main">
                     <div class="main__suggestions--main-post-main-title text-dark">
-                        Đồng Hồ Điện Tử Dây Silicone Thể Thao Cho Học Sinh
+                        {{ $Suggestion->title }}
                     </div>
                     <div class="main__suggestions--main-post-main-space"></div>
                     <div class="main__suggestions--main-post-main-detail d-flex justify-content-between align-items-center">
                         <div class="main__suggestions--main-post-main-detail-price d-flex justify-content-center align-items-center">
                             <span>₫</span>
-                            <p class="m-0">59.000</p>
+                            <p class="m-0">{{ $Suggestion->sold }}</p>
                         </div>
                         <div class="main__suggestions--main-post-main-detail-sold d-flex justify-content-center align-items-center">
-                            Đã bán 4,9k
+                            Đã bán 0
                         </div>
                     </div>
                 </div>
-                <div class="main__suggestions--main-post-hover text-center text-white  position-absolute">
+                <a href="{{ route('category-child', ['id' => $Suggestion->categoryChild->id]) }}" class="main__suggestions--main-post-hover text-center text-white  position-absolute">
                     Tìm sản phẩm tương tự
-                </div>
+                </a>
             </div>
         </a>
+        @endforeach
     </div>
     <div class="main__suggestions--seemore d-flex justify-content-center align-items-center container mb-4">
         <button class="bg-white text-center">
