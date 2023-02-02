@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoryDad;
-use App\Models\CategoryChild;
+use App\Models\Product;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +20,47 @@ class IndexController extends Controller
     $CategoryChild3 = CategoryDad::with('categoryChildren')->offset(11)->limit(5)->get();
     $CategoryChild4 = CategoryDad::with('categoryChildren')->offset(16)->limit(5)->get();
     $CategoryChild5 = CategoryDad::with('categoryChildren')->offset(21)->limit(5)->get();
+    
+    $FlashSales = Product::inRandomOrder()
+    ->skip(0)->take(16)
+    ->get();
+
+    $ShopeeMall1 = DB::table('shop')
+    ->join('product','product.shop_id','=','shop.id')
+    ->skip(0)->take(2)
+    ->get();
+    $ShopeeMall2 = DB::table('shop')
+    ->join('product','product.shop_id','=','shop.id')
+    ->skip(2)->take(2)
+    ->get();
+    $ShopeeMall3 = DB::table('shop')
+    ->join('product','product.shop_id','=','shop.id')
+    ->skip(4)->take(2)
+    ->get();
+    $ShopeeMall4 = DB::table('shop')
+    ->join('product','product.shop_id','=','shop.id')
+    ->skip(6)->take(2)
+    ->get();
+    $ShopeeMall5 = DB::table('shop')
+    ->join('product','product.shop_id','=','shop.id')
+    ->skip(8)->take(2)
+    ->get();
+    $ShopeeMall6 = DB::table('shop')
+    ->join('product','product.shop_id','=','shop.id')
+    ->skip(10)->take(2)
+    ->get();
+    $ShopeeMall7 = DB::table('shop')
+    ->join('product','product.shop_id','=','shop.id')
+    ->skip(12)->take(1)
+    ->get();
+
+    $TopSearchs = Product::inRandomOrder()
+    ->skip(0)->take(21)
+    ->get();
+
+    $Suggestions = Product::with('categoryChild')->inRandomOrder()
+    ->skip(0)->take(48)
+    ->get();
 
     $user_id = optional(session('user'))->id;
 
@@ -45,6 +86,16 @@ class IndexController extends Controller
       'CategoryChild3',
       'CategoryChild4',
       'CategoryChild5',
+      'FlashSales',
+      'ShopeeMall1',
+      'ShopeeMall2',
+      'ShopeeMall3',
+      'ShopeeMall4',
+      'ShopeeMall5',
+      'ShopeeMall6',
+      'ShopeeMall7',
+      'TopSearchs',
+      'Suggestions',
       'users',
     ));
   }

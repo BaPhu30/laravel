@@ -372,10 +372,24 @@
 .main__shopeemall--slider-shop-main-item {
   flex: 1 0;
 }
-.main__shopeemall--slider-shop-main-item-div-img {
+.main__shopeemall--slider-shop-main-item-div-product {
   width: 200px;
-  height: 190px;
+  height: 100px;
   margin-bottom: 5px;
+}
+.main__shopeemall--slider-shop-main-item-div-product img {
+  width: 100px;
+  height: 100px;
+}
+.main__shopeemall--slider-shop-main-item-div-shop {
+  overflow: hidden;
+  width: 150px;
+  height: 60px;
+  margin-bottom: 5px;
+  box-shadow: 0 1px 12px 0 rgba(0, 0, 0, 0.12);
+}
+.main__shopeemall--slider-shop-main-item-div-shop img {
+  width: 100px;
 }
 .main__shopeemall--slider-shop-main-item-div-title {
   font-size: 18px;
