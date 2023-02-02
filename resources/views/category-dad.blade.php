@@ -158,7 +158,7 @@
             <div class="main__product--main-content d-flex flex-wrap">
                 @foreach ($Products as $Product1)
                 @foreach ($Product1->products as $Product)
-                <a href="">
+                <a href="{{ route('product', ['id' => $Product->id]) }}">
                     <div class="main__product--main-content-post bg-white">
                         <div class="main__product--main-content-post-img position-relative">
                             <div class="main__product--main-content-post-img-percent position-absolute">
