@@ -39,7 +39,7 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="{{ route('admin.user-table') }}" class="nav-link">Home</a>
+          <a href="{{ route('shop.product-table', ['id' => $Product->id]) }}" class="nav-link">Home</a>
         </li>
       </ul>
 
@@ -62,7 +62,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="{{ route('admin.user-table') }}" class="brand-link">
+      <a href="{{ route('shop.product-table', ['id' => $Product->id]) }}" class="brand-link">
         <img src="{{ asset('/img/lg-icon-shopee.png') }}" alt="Shopee Logo" class="brand-image elevation-3">
         <span class="brand-text font-weight-light">Admin Shopee</span>
       </a>

@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shop;
-use App\Models\Users;
 use App\Models\UserRole;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
 
 class AdminShopTableController extends Controller
 {
