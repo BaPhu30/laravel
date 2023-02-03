@@ -95,39 +95,67 @@ class FCMController extends Controller
       $fromUser = $params['fromUser'];
       $toUser = $params['toUser'];
 
-      // người gửi, người nhận chưa có room
-      $isCreateRoom =  DB::table('room')
-        ->insert([
-          'created_at' => Carbon::now()->toDateTimeString(),
-        ]);
+      // create table temp
+      $tempFromUser = DB::unprepared(
+        DB::raw("CREATE TEMPORARY TABLE table_temp_from_user AS (SELECT * FROM user_room WHERE user_id = $fromUser);")
+      );
 
-      if ($isCreateRoom) {
-        $newRoom =  DB::table('room')
-          ->latest('created_at')
-          ->first();
+      $tempToUser = DB::unprepared(
+        DB::raw("CREATE TEMPORARY TABLE table_temp_to_user AS (SELECT * FROM user_room WHERE user_id = $toUser);")
+      );
 
-        // add record user gửi
-        DB::table('user_room')->insert([
-          'user_id' => $fromUser,
-          'room_id' => $newRoom->id,
-          'created_at' => Carbon::now()->toDateTimeString(),
-        ]);
+      if (
+        $tempFromUser &&
+        $tempToUser
+      ) {
+        $userRoom = DB::table('table_temp_to_user')
+          ->join('table_temp_from_user', 'table_temp_from_user.room_id', '=', 'table_temp_to_user.room_id')
+          ->get();
 
-        // add record user nhận
-        DB::table('user_room')->insert([
-          'user_id' => $toUser,
-          'room_id' => $newRoom->id,
-          'created_at' => Carbon::now()->toDateTimeString(),
-        ]);
+        if ($userRoom->count() > 0) {
+          return response()->json([
+            'success' => true,
+            'message' => 'Chat Exist.',
+            'data' => [
+              'room_id' => $userRoom[0]->room_id
+            ]
+          ]);
+        } else {
+          // người gửi, người nhận chưa có room
+          $isCreateRoom =  DB::table('room')
+            ->insert([
+              'created_at' => Carbon::now()->toDateTimeString(),
+            ]);
+
+          if ($isCreateRoom) {
+            $newRoom =  DB::table('room')
+              ->latest('created_at')
+              ->first();
+
+            // add record user gửi
+            DB::table('user_room')->insert([
+              'user_id' => $fromUser,
+              'room_id' => $newRoom->id,
+              'created_at' => Carbon::now()->toDateTimeString(),
+            ]);
+
+            // add record user nhận
+            DB::table('user_room')->insert([
+              'user_id' => $toUser,
+              'room_id' => $newRoom->id,
+              'created_at' => Carbon::now()->toDateTimeString(),
+            ]);
+          }
+
+          return response()->json([
+            'success' => true,
+            'message' => 'Create Chat Success.',
+            'data' => [
+              'room_id' => $newRoom->id
+            ]
+          ]);
+        }
       }
-
-      return response()->json([
-        'success' => true,
-        'message' => 'Create Chat Success.',
-        'data' => [
-          'room_id' => $newRoom->id
-        ]
-      ]);
     } catch (\Throwable $th) {
       return response()->json([
         'success' => false,
@@ -142,8 +170,11 @@ class FCMController extends Controller
     try {
       $params = $req->all();
       $room_id = $params['room_id'];
+      $fromUser = $params['fromUser'];
+      $toUser = $params['toUser'];
 
       $messages = DB::table('messenger')
+        ->whereIn('user_id', array($fromUser, $toUser))
         ->where('room_id', $room_id)
         ->get();
 
@@ -177,10 +208,10 @@ class FCMController extends Controller
       $fromUser = DB::table('users')
         ->where('id', $from_user)
         ->get();
-      
+
       $toUser = DB::table('users')
-      ->where('id', $to_user)
-      ->get();
+        ->where('id', $to_user)
+        ->get();
 
       DB::table('messenger')->insert([
         'user_id' => $from_user,
