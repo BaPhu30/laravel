@@ -389,10 +389,29 @@
             $("#liveToast").removeClass("hide");
             $("#liveToast").addClass("show");
 
+            const div2 = document.createElement('div');
+            
+            div2.innerHTML = `
+              <div class="chat-detail-container">
+                <div class="detail-content-container">
+                  <div class="their-message-container">
+                    <div class="content-message">${body}</div>
+                  </div>
+                </div>
+              </div>
+            `;
+
+            // add new message to view chat
+            document.getElementById("viewChat").appendChild(div2);
+
+            // scroll to bottom view chat
+            $("#viewChat").animate({scrollTop:$("#viewChat")[0].scrollHeight}, 'slow')
+
             // auto close toast
             setTimeout(()=>{
               $("#liveToast").removeClass("show");
               $("#liveToast").addClass("hide");
+              $("#liveToast").empty();
             }, 3000)
         });
       </script>

@@ -170,16 +170,56 @@ class FCMController extends Controller
     try {
       $params = $req->all();
       $text = $params['text'];
-      $fromUser = $params['fromUser'];
-      $room_id= $params['room_id'];
+      $from_user = $params['fromUser'];
+      $room_id = $params['room_id'];
+      $to_user = $params['toUser'];
+
+      $fromUser = DB::table('users')
+        ->where('id', $from_user)
+        ->get();
+      
+      $toUser = DB::table('users')
+      ->where('id', $to_user)
+      ->get();
 
       DB::table('messenger')->insert([
-        'user_id' => $fromUser,
+        'user_id' => $from_user,
         'room_id' => $room_id,
         'text' => $text,
         'messenger_parent_id' => 0,
         'created_at' => Carbon::now()->toDateTimeString(),
       ]);
+
+      $CLOUD_SERVER_KEY = env('CLOUD_SERVER_KEY');
+
+      $data = [
+        "to" => $toUser[0]->device_token,
+        "notification" => [
+          "title" => $fromUser[0]->name,
+          "body" => $text,
+        ],
+        "data" => [
+          "user_id" => $toUser[0]->id,
+        ]
+      ];
+      $dataString = json_encode($data);
+
+      $headers = [
+        'Authorization: key=' . $CLOUD_SERVER_KEY,
+        'Content-Type: application/json',
+      ];
+
+      $ch = curl_init();
+
+      curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+      curl_setopt($ch, CURLOPT_POST, true);
+      curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+
+      curl_exec($ch);
+      curl_close($ch);
 
       return response()->json([
         'success' => true,
@@ -191,6 +231,5 @@ class FCMController extends Controller
         'message' => 'Send Message Fail.',
       ]);
     }
-    
   }
 }
