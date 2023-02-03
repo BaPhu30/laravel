@@ -20,7 +20,6 @@
   <link rel="stylesheet" href="{{ asset('/dist/css/adminlte.min.css') }}">
   <!-- Link style -->
   <link rel="stylesheet" href="{{ asset('/dist/css/style.css') }}">
-  @stack('styles')
 </head>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -66,64 +65,36 @@
         <img src="{{ asset('/img/lg-icon-shopee.png') }}" alt="Shopee Logo" class="brand-image elevation-3">
         <span class="brand-text font-weight-light">Admin Shopee</span>
       </a>
-
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-          <div class="image">
-            <img src="{{ Session::get('user')->avatar }}" class="img-circle elevation-2" alt="User Image">
-          </div>
-          <div class="info">
-            <a href="" class="d-block">{{ Session::get('user')->name }}</a>
-          </div>
-        </div>
-
-        <!-- SidebarSearch Form -->
-        <div class="form-inline">
-          <div class="input-group" data-widget="sidebar-search">
-            <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-              <button class="btn btn-sidebar">
-                <i class="fas fa-search fa-fw"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        @yield('sidebar-menu')
-      </div>
-      <!-- /.sidebar -->
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <div class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1>
-                @yield('title')
-              </h1>
-            </div>
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">
-                  @yield('title-sub')
-                </li>
-              </ol>
-            </div>
-          </div>
-        </div><!-- /.container-fluid -->
-      </div>
-      <!-- /.content-header -->
-
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          @yield('content')
+          <div class="row">
+            <div class="col-12">
+              <div class="card mt-5">
+                <div class="card-body">
+                  <h5 class="mb-4">Login Admin</h5>
+                  <form action="{{ route('admin.login') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row mb-4">
+                      <div class="col-12 mb-3">
+                        <input class="w-100 form-control bg-white" type="text" placeholder="Email" name="email">
+                      </div>
+                      <div class="col-12">
+                        <input class="w-100 form-control bg-white" type="text" placeholder="Pass" name="pass">
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                      <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div><!--/. container-fluid -->
       </section>
       <!-- /.content -->
@@ -139,10 +110,6 @@
   </div>
   <!-- ./wrapper -->
 
-  <!-- Modal Edit -->
-  @yield('modal-edit')
-  <!-- /.Modal-Edit -->
-
   <!-- REQUIRED SCRIPTS -->
   <!-- jQuery -->
   <script src="{{ asset('/plugins/jquery/jquery.min.js') }}"></script>
@@ -150,10 +117,10 @@
   <script src="{{ asset('/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <!-- overlayScrollbars -->
   <script src="{{ asset('/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-    <!-- InputMask -->
-    <script src="{{ asset('/plugins/moment/moment.min.js') }}"></script>
+  <!-- InputMask -->
+  <script src="{{ asset('/plugins/moment/moment.min.js') }}"></script>
   <script src="{{ asset('/plugins/inputmask/jquery.inputmask.min.js') }}"></script>
- 
+
   <!-- Tempusdominus Bootstrap 4 -->
   <script src="{{ asset('/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
   <!-- AdminLTE App -->
@@ -172,7 +139,7 @@
   <script src="{{ asset('/dist/js/demo.js') }}"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="{{ asset('/dist/js/pages/dashboard2.js') }}"></script>
-  @stack('scripts')
+
 </body>
 
 </html>
