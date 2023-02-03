@@ -13,6 +13,39 @@ use App\Models\Messenger;
 
 class FCMController extends Controller
 {
+  public function getChatUsers(Request $req)
+  {
+    try {
+      $params = $req->all();
+      $user_id = $params['user_id'];
+
+      $users = DB::table('users')
+        ->select([
+          'users.id as user_id',
+          'users.name',
+          'users.email',
+          'users.avatar',
+          'users.device_token',
+          DB::raw("IF(ISNULL(user_room.room_id)=1, -1, user_room.room_id) as room_id"),
+        ])
+        ->leftJoin('user_room', 'user_room.user_id', '=', 'users.id')
+        ->where('users.id', '<>', $user_id)
+        ->get();
+
+      return response()->json([
+        'success' => true,
+        'message' => 'Get Chat Users Success.',
+        'data' => $users
+      ]);
+    } catch (\Throwable $th) {
+      return response()->json([
+        'success' => false,
+        'message' => 'Get Chat Users Fail.',
+        'data' => []
+      ]);
+    }
+  }
+
   // cập nhật lại fcm token sau khi có user login vào
   public function updateToken(Request $req)
   {
@@ -46,74 +79,118 @@ class FCMController extends Controller
     ]);
   }
 
+  public function getNotification()
+  {
+  }
+
   // TODO:
   public function sendNotification(Request $req)
   {
   }
 
-  public function joinChat(Request $req)
+  public function createChat(Request $req)
   {
     try {
-      $body = $req->all();
-      $user_id = $body['user_id'];
-      $to_user_id = $body['to_user_id'];
+      $params = $req->all();
+      $fromUser = $params['fromUser'];
+      $toUser = $params['toUser'];
 
-      $isExistUserFrom = DB::table('user_room')
-        ->where('user_id', $user_id)
-        ->exists();
-
-      $isExistUserTo = DB::table('user_room')
-        ->where('user_id', $to_user_id)
-        ->exists();
-
-      if ($isExistUserFrom && $isExistUserTo) {
-        // người gửi, người nhận đã có room
-
-        return response()->json([
-          'success' => true,
-          'message' => 'Get New Message Success.',
+      // người gửi, người nhận chưa có room
+      $isCreateRoom =  DB::table('room')
+        ->insert([
+          'created_at' => Carbon::now()->toDateTimeString(),
         ]);
-      } else {
-        // người gửi, người nhận chưa có room
-        $isCreateRoom =  DB::table('room')
-          ->insert([
-            'created_at' => Carbon::now()->toDateTimeString(),
-          ]);
 
-        if ($isCreateRoom) {
-          $newRoom =  DB::table('room')
-            ->latest('created_at')
-            ->first();
+      if ($isCreateRoom) {
+        $newRoom =  DB::table('room')
+          ->latest('created_at')
+          ->first();
 
-          // add record user gửi
-          DB::table('user_room')->insert([
-            'user_id' => $user_id,
-            'room_id' => $newRoom->id,
-            'created_at' => Carbon::now()->toDateTimeString(),
-          ]);
+        // add record user gửi
+        DB::table('user_room')->insert([
+          'user_id' => $fromUser,
+          'room_id' => $newRoom->id,
+          'created_at' => Carbon::now()->toDateTimeString(),
+        ]);
 
-          // add record user nhận
-          DB::table('user_room')->insert([
-            'user_id' => $to_user_id,
-            'room_id' => $newRoom->id,
-            'created_at' => Carbon::now()->toDateTimeString(),
-          ]);
-        }
-
-        return response()->json([
-          'success' => true,
-          'message' => 'Create Chat Success.'
+        // add record user nhận
+        DB::table('user_room')->insert([
+          'user_id' => $toUser,
+          'room_id' => $newRoom->id,
+          'created_at' => Carbon::now()->toDateTimeString(),
         ]);
       }
+
+      return response()->json([
+        'success' => true,
+        'message' => 'Create Chat Success.',
+        'data' => [
+          'room_id' => $newRoom->id
+        ]
+      ]);
     } catch (\Throwable $th) {
       return response()->json([
         'success' => false,
-        'message' => 'error'
+        'message' => 'Create Chat Fail.',
+        'data' => []
       ]);
     }
   }
 
+  public function joinChat(Request $req)
+  {
+    try {
+      $params = $req->all();
+      $room_id = $params['room_id'];
+
+      $messages = DB::table('messenger')
+        ->where('room_id', $room_id)
+        ->get();
+
+      return response()->json([
+        'success' => true,
+        'message' => 'Join Chat Success.',
+        'data' => $messages
+      ]);
+    } catch (\Throwable $th) {
+      return response()->json([
+        'success' => false,
+        'message' => 'Join Chat Fail.',
+        'data' => []
+      ]);
+    }
+  }
+
+  public function getMessage()
+  {
+  }
+
   public function sendMessage(Request $req)
   {
+    try {
+      $params = $req->all();
+      $text = $params['text'];
+      $fromUser = $params['fromUser'];
+      $room_id= $params['room_id'];
+
+      DB::table('messenger')->insert([
+        'user_id' => $fromUser,
+        'room_id' => $room_id,
+        'text' => $text,
+        'messenger_parent_id' => 0,
+        'created_at' => Carbon::now()->toDateTimeString(),
+      ]);
+
+      return response()->json([
+        'success' => true,
+        'message' => 'Send Message Success.',
+      ]);
+    } catch (\Throwable $th) {
+      return response()->json([
+        'success' => false,
+        'message' => 'Send Message Fail.',
+      ]);
+    }
+    
   }
 }
