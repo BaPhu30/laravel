@@ -62,21 +62,6 @@ class IndexController extends Controller
     ->skip(0)->take(48)
     ->get();
 
-    $user_id = optional(session('user'))->id;
-
-    $users = DB::table('users')
-      ->select([
-        'users.id as user_id',
-        'users.name',
-        'users.email',
-        'users.avatar',
-        'users.device_token',
-        DB::raw("IF(ISNULL(user_room.room_id)=1, -1, user_room.room_id) as room_id"),
-      ])
-      ->leftJoin('user_room', 'user_room.user_id', '=', 'users.id')
-      ->where('users.id', '<>', $user_id)
-      ->get();
-
     return view('index', compact(
       'CategoryDad',
       'CategoryDad1',
@@ -96,7 +81,6 @@ class IndexController extends Controller
       'ShopeeMall7',
       'TopSearchs',
       'Suggestions',
-      'users',
     ));
   }
 }
