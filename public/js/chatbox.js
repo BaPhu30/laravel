@@ -67,6 +67,8 @@ function onSelectUser(e) {
   } else {
     postJoinChat({
       room_id: e?.room_id,
+      fromUser: user_id,
+      toUser: e?.user_id,
     });
   }
 }
@@ -101,6 +103,8 @@ function postCreateChat(e) {
 
         postJoinChat({
           room_id,
+          fromUser: e?.fromUser,
+          toUser: e?.toUser,
         });
       }
     })
@@ -110,6 +114,8 @@ function postCreateChat(e) {
 }
 
 function postJoinChat(e) {
+  $("#viewChat").empty();
+  
   axios
     .post(`/api/join-chat`, e)
     .then((res) => {
