@@ -394,7 +394,8 @@
 
             $("#liveToast").removeClass("hide");
             $("#liveToast").addClass("show");
-
+            $("#liveToast").empty();
+            
             // auto close toast
             setTimeout(() => {
                 $("#liveToast").removeClass("show");
