@@ -92,7 +92,7 @@
         </div>
     </div>
     <div class="main__hotword container d-flex justify-content-around pb-4">
-        <a href="" class="main__hotword--content">
+        <a class="main__hotword--content">
             <div class="main__hotword--content-img mb-2">
                 <img src="/img/index/index-hotword/index-hotword-1.gif" alt="">
             </div>
@@ -100,7 +100,7 @@
                 Khung Giờ Săn Sale
             </div>
         </a>
-        <a href="" class="main__hotword--content">
+        <a class="main__hotword--content">
             <div class="main__hotword--content-img mb-2">
                 <img src="/img/index/index-hotword/index-hotword-2.png" alt="">
             </div>
@@ -108,7 +108,7 @@
                 Gì Cũng Rẻ - Mua Là Freeship
             </div>
         </a>
-        <a href="" class="main__hotword--content">
+        <a class="main__hotword--content">
             <div class="main__hotword--content-img mb-2">
                 <img src="/img/index/index-hotword/index-hotword-3.png" alt="">
             </div>
@@ -116,7 +116,7 @@
                 Miễn Phí Vận Chuyển
             </div>
         </a>
-        <a href="" class="main__hotword--content">
+        <a class="main__hotword--content">
             <div class="main__hotword--content-img mb-2">
                 <img src="/img/index/index-hotword/index-hotword-4.png" alt="">
             </div>
@@ -124,7 +124,7 @@
                 Bắt Trend - Giá Sốc
             </div>
         </a>
-        <a href="" class="main__hotword--content">
+        <a class="main__hotword--content">
             <div class="main__hotword--content-img mb-2">
                 <img src="/img/index/index-hotword/index-hotword-5.png" alt="">
             </div>
@@ -132,7 +132,7 @@
                 Hoàn Xu Xtra Từ 100k
             </div>
         </a>
-        <a href="" class="main__hotword--content">
+        <a class="main__hotword--content">
             <div class="main__hotword--content-img mb-2">
                 <img src="/img/index/index-hotword/index-hotword-6.png" alt="">
             </div>
@@ -140,7 +140,7 @@
                 Hàng Hiệu Giá Tốt
             </div>
         </a>
-        <a href="" class="main__hotword--content">
+        <a class="main__hotword--content">
             <div class="main__hotword--content-img mb-2">
                 <img src="/img/index/index-hotword/index-hotword-7.png" alt="">
             </div>
@@ -148,7 +148,7 @@
                 Hàng Quốc Tế
             </div>
         </a>
-        <a href="" class="main__hotword--content">
+        <a class="main__hotword--content">
             <div class="main__hotword--content-img mb-2">
                 <img src="/img/index/index-hotword/index-hotword-8.png" alt="">
             </div>
@@ -156,7 +156,7 @@
                 Nạp Thẻ & Dịch Vụ
             </div>
         </a>
-        <a href="" class="main__hotword--content">
+        <a class="main__hotword--content">
             <div class="main__hotword--content-img mb-2">
                 <img src="/img/index/index-hotword/index-hotword-9.png" alt="">
             </div>

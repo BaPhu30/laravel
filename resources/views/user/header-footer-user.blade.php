@@ -8,7 +8,7 @@
     <!-- Link icon shopee -->
     <link rel="icon" href="{{asset('/img/lg-icon-shopee.png') }}">
     <!-- Link font-awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link href="{{ asset('/font-awesome/css/all.min.css') }}" rel="stylesheet">
     <!-- Link bootstrap -->
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
     <!-- Link css user/header-footer-user -->
@@ -21,31 +21,31 @@
     <header class="header fixed-top text-white">
         <div class="header__navbar container d-flex justify-content-between mb-2">
             <div class="header__navbar--social d-flex align-items-center">
-                <a href="/seller/signin" target="_blank" class="p-2">Kênh Người Bán</a>
+                <a href="{{route('admin')}}" target="_blank" class="p-2">Kênh Người Bán</a>
                 ||
-                <a href="" class="p-2">Tải ứng dụng</a>
+                <a class="p-2">Tải ứng dụng</a>
                 |
                 <span class="p-2">Kết nối </span>
                 <a href="https://www.facebook.com/tabaphu/" target="_blank" class="fa-brands fa-facebook p-1"></a>
                 <a href="https://www.instagram.com/tabaphu/" target="_blank" class="fa-brands fa-instagram p-1"></a>
             </div>
             <div class="header__navbar--login-register d-flex align-items-center">
-                <a href="" class="p-2">
+                <a class="p-2">
                     <i class="fa-solid fa-bell"></i>
                     Thông báo
                 </a>
-                <a href="" class="p-2">
+                <a class="p-2">
                     <i class="fa-solid fa-circle-question"></i>
                     Hỗ trợ
                 </a>
-                <a href="" class="p-2">
+                <a class="p-2">
                     <i class="fa-solid fa-globe"></i>
                     Tiếng Việt
                     <i class="fa-solid fa-chevron-down"></i>
                 </a>
                 <div class="header__navbar--user d-flex align-items-center">
-                    <img class="border rounded-circle me-1" src="/img/img-user.jpg" alt="">
-                    <a href="{{route('user.purchase')}}">Tên user</a>
+                    <img class="border rounded-circle me-1" src="{{ Session::get('user')->avatar }}" alt="">
+                    <a href="{{route('user.purchase')}}">{{ Session::get('user')->name }}</a>
                 </div>
             </div>
         </div>
@@ -59,14 +59,14 @@
                     <i class="fa-solid fa-magnifying-glass text-white py-2 px-3 m-1 rounded"></i>
                 </div>
                 <div class="d-flex align-items-center py-2">
-                    <a href="" class="me-2 text-white">Dép</a>
-                    <a href="" class="me-2 text-white">Áo Khoác</a>
-                    <a href="" class="me-2 text-white">Túi Xách Nữ</a>
-                    <a href="" class="me-2 text-white">Áo Croptop</a>
-                    <a href="" class="me-2 text-white">Váy</a>
-                    <a href="" class="me-2 text-white">Son</a>
-                    <a href="" class="me-2 text-white">Ốp Iphone</a>
-                    <a href="" class="me-2 text-white">Tai nghe Bluetooth</a>
+                    <a href="{{ route('category-dad', ['id' => 1]) }}" class="me-2 text-white">Thời Trang Nam</a>
+                    <a href="{{ route('category-dad', ['id' => 2]) }}" class="me-2 text-white">Thời Trang Nữ</a>
+                    <a href="{{ route('category-dad', ['id' => 3]) }}" class="me-2 text-white">Phụ Kiện & Điện Thoại</a>
+                    <a href="{{ route('category-dad', ['id' => 4]) }}" class="me-2 text-white">Mẹ & Bé</a>
+                    <a href="{{ route('category-dad', ['id' => 5]) }}" class="me-2 text-white">Thiết Bị Điện Tử</a>
+                    <a href="{{ route('category-dad', ['id' => 6]) }}" class="me-2 text-white">Nhà Cửa & Đời Sống</a>
+                    <a href="{{ route('category-dad', ['id' => 7]) }}" class="me-2 text-white">Máy Tính & Laptop</a>
+                    <a href="{{ route('category-dad', ['id' => 8]) }}" class="me-2 text-white">Sắc Đẹp</a>
                 </div>
             </div>
             <div class="header__search--cart d-flex justify-content-center align-items-center">

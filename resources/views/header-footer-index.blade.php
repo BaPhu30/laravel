@@ -8,7 +8,7 @@
     <!-- Link icon shopee -->
     <link rel="icon" href="{{asset('/img/lg-icon-shopee.png') }}">
     <!-- Link font-awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link href="{{ asset('/font-awesome/css/all.min.css') }}" rel="stylesheet">
     <!-- Link bootstrap -->
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
     <!-- Link css -->
@@ -23,24 +23,24 @@
         @if (Session::has("user"))
         <div class="header__navbar container d-flex justify-content-between mb-2">
             <div class="header__navbar--social d-flex align-items-center">
-                <a href="/seller/signin" target="_blank" class="p-2">Kênh Người Bán</a>
+                <a href="{{route('admin')}}" target="_blank" class="p-2">Kênh Người Bán</a>
                 ||
-                <a href="" class="p-2">Tải ứng dụng</a>
+                <a class="p-2">Tải ứng dụng</a>
                 |
                 <span class="p-2">Kết nối </span>
                 <a href="https://www.facebook.com/tabaphu/" target="_blank" class="fa-brands fa-facebook p-1"></a>
                 <a href="https://www.instagram.com/tabaphu/" target="_blank" class="fa-brands fa-instagram p-1"></a>
             </div>
             <div class="header__navbar--login-register d-flex align-items-center">
-                <a href="" class="p-2">
+                <a class="p-2">
                     <i class="fa-solid fa-bell"></i>
                     Thông báo
                 </a>
-                <a href="" class="p-2">
+                <a class="p-2">
                     <i class="fa-solid fa-circle-question"></i>
                     Hỗ trợ
                 </a>
-                <a href="" class="p-2">
+                <a class="p-2">
                     <i class="fa-solid fa-globe"></i>
                     Tiếng Việt
                     <i class="fa-solid fa-chevron-down"></i>
@@ -66,14 +66,14 @@
                     <i class="fa-solid fa-magnifying-glass text-white py-2 px-3 m-1 rounded"></i>
                 </div>
                 <div class="d-flex align-items-center py-2">
-                    <a href="" class="me-2 text-white">Dép</a>
-                    <a href="" class="me-2 text-white">Áo Khoác</a>
-                    <a href="" class="me-2 text-white">Túi Xách Nữ</a>
-                    <a href="" class="me-2 text-white">Áo Croptop</a>
-                    <a href="" class="me-2 text-white">Váy</a>
-                    <a href="" class="me-2 text-white">Son</a>
-                    <a href="" class="me-2 text-white">Ốp Iphone</a>
-                    <a href="" class="me-2 text-white">Tai nghe Bluetooth</a>
+                    <a href="{{ route('category-dad', ['id' => 1]) }}" class="me-2 text-white">Thời Trang Nam</a>
+                    <a href="{{ route('category-dad', ['id' => 2]) }}" class="me-2 text-white">Thời Trang Nữ</a>
+                    <a href="{{ route('category-dad', ['id' => 3]) }}" class="me-2 text-white">Phụ Kiện & Điện Thoại</a>
+                    <a href="{{ route('category-dad', ['id' => 4]) }}" class="me-2 text-white">Mẹ & Bé</a>
+                    <a href="{{ route('category-dad', ['id' => 5]) }}" class="me-2 text-white">Thiết Bị Điện Tử</a>
+                    <a href="{{ route('category-dad', ['id' => 6]) }}" class="me-2 text-white">Nhà Cửa & Đời Sống</a>
+                    <a href="{{ route('category-dad', ['id' => 7]) }}" class="me-2 text-white">Máy Tính & Laptop</a>
+                    <a href="{{ route('category-dad', ['id' => 8]) }}" class="me-2 text-white">Sắc Đẹp</a>
                 </div>
             </div>
             <div class="header__search--cart d-flex justify-content-center align-items-center">
@@ -83,26 +83,26 @@
         @else
         <div class="header__navbar container d-flex justify-content-between mb-2">
             <div class="header__navbar--social d-flex align-items-center text-white">
-                <a href="/seller/signin" target="_blank" class="p-2">Kênh Người Bán</a>
+                <a href="{{route('admin')}}" target="_blank" class="p-2">Kênh Người Bán</a>
                 ||
-                <a href="" class="p-2">Trở thành Người bán Shopee</a>
+                <a class="p-2">Trở thành Người bán Shopee</a>
                 |
-                <a href="" class="p-2">Tải ứng dụng</a>
+                <a class="p-2">Tải ứng dụng</a>
                 ||
                 <span class="p-2">Kết nối </span>
                 <a href="https://www.facebook.com/tabaphu/" target="_blank" class="fa-brands fa-facebook p-1"></a>
                 <a href="https://www.instagram.com/tabaphu/" target="_blank" class="fa-brands fa-instagram p-1"></a>
             </div>
             <div class="header__navbar--login-register d-flex align-items-center text-white">
-                <a href="" class="p-2">
+                <a class="p-2">
                     <i class="fa-solid fa-bell"></i>
                     Thông báo
                 </a>
-                <a href="" class="p-2">
+                <a class="p-2">
                     <i class="fa-solid fa-circle-question"></i>
                     Hỗ trợ
                 </a>
-                <a href="" class="p-2">
+                <a class="p-2">
                     <i class="fa-solid fa-globe"></i>
                     Tiếng Việt
                     <i class="fa-solid fa-chevron-down"></i>
@@ -122,14 +122,14 @@
                     <i class="fa-solid fa-magnifying-glass text-white py-2 px-3 m-1 rounded"></i>
                 </div>
                 <div class="d-flex align-items-center py-2">
-                    <a href="" class="me-2 text-white">Dép</a>
-                    <a href="" class="me-2 text-white">Áo Khoác</a>
-                    <a href="" class="me-2 text-white">Túi Xách Nữ</a>
-                    <a href="" class="me-2 text-white">Áo Croptop</a>
-                    <a href="" class="me-2 text-white">Váy</a>
-                    <a href="" class="me-2 text-white">Son</a>
-                    <a href="" class="me-2 text-white">Ốp Iphone</a>
-                    <a href="" class="me-2 text-white">Tai nghe Bluetooth</a>
+                    <a href="{{ route('category-dad', ['id' => 1]) }}" class="me-2 text-white">Thời Trang Nam</a>
+                    <a href="{{ route('category-dad', ['id' => 2]) }}" class="me-2 text-white">Thời Trang Nữ</a>
+                    <a href="{{ route('category-dad', ['id' => 3]) }}" class="me-2 text-white">Phụ Kiện & Điện Thoại</a>
+                    <a href="{{ route('category-dad', ['id' => 4]) }}" class="me-2 text-white">Mẹ & Bé</a>
+                    <a href="{{ route('category-dad', ['id' => 5]) }}" class="me-2 text-white">Thiết Bị Điện Tử</a>
+                    <a href="{{ route('category-dad', ['id' => 6]) }}" class="me-2 text-white">Nhà Cửa & Đời Sống</a>
+                    <a href="{{ route('category-dad', ['id' => 7]) }}" class="me-2 text-white">Máy Tính & Laptop</a>
+                    <a href="{{ route('category-dad', ['id' => 8]) }}" class="me-2 text-white">Sắc Đẹp</a>
                 </div>
             </div>
             <div class="header__search--cart d-flex justify-content-center align-items-center">
@@ -287,7 +287,7 @@
     <!-- End Footer -->
 
     @if (Session::has("user"))
-      @include('chat-box')
+    @include('chat-box')
     @endif
 
     <div style="
@@ -296,7 +296,7 @@
       bottom: 12px;
       right: 12px;
     ">
-      <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" />
+        <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" />
     </div>
 
     <!-- Link script bootstrap -->
@@ -306,12 +306,16 @@
     <script src="{{ asset('/js/chatbox.js') }}"></script>
     <script type="module">
         // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-analytics.js";
-        import { 
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
+        import {
+            getAnalytics
+        } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-analytics.js";
+        import {
             getMessaging,
             getToken,
-            onMessage, 
+            onMessage,
         } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-messaging.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
@@ -336,7 +340,9 @@
         const messaging = getMessaging(app);
         const publicVapidKey = "{{ env('WEB_PUSH_CERTIFICATES') }}";
         // Add the public key generated from the console here.
-        getToken(messaging, {vapidKey: publicVapidKey})
+        getToken(messaging, {
+                vapidKey: publicVapidKey
+            })
             .then((currentToken) => {
                 if (currentToken) {
                     console.log("hoand token :", currentToken)
@@ -348,20 +354,20 @@
                     console.log('No registration token available. Request permission to generate one.');
                     // ...
                 }
-                }).catch((err) => {
+            }).catch((err) => {
                 console.log('An error occurred while retrieving token. ', err);
                 // ...
             });
 
         function sendTokenToServer(device_token) {
-          const user = "{{ Session::get('user') }}";
-          if(!!user){
-            const user_id = "{{ optional(Session::get('user'))->id }}"
-            axios.post(`/api{{config('endpoints.UPDATE_TOKEN')}}`, {
-              device_token,
-              user_id
-            }).then(res => {})
-          }
+            const user = "{{ Session::get('user') }}";
+            if (!!user) {
+                const user_id = "{{ optional(Session::get('user'))->id }}"
+                axios.post(`/api{{config('endpoints.UPDATE_TOKEN')}}`, {
+                    device_token,
+                    user_id
+                }).then(res => {})
+            }
         }
 
         // Lắng nghe khi app đang chạy
@@ -370,7 +376,7 @@
 
             const title = payload?.notification?.title;
             const body = payload?.notification?.body;
-            
+
             const div = document.createElement('div');
             div.innerHTML = `
               <div class="toast-header">
@@ -388,6 +394,7 @@
 
             $("#liveToast").removeClass("hide");
             $("#liveToast").addClass("show");
+
 
             const div2 = document.createElement('div');
             
@@ -414,7 +421,7 @@
               $("#liveToast").empty();
             }, 3000)
         });
-      </script>
+    </script>
     @stack('scripts')
 </body>
 
