@@ -55,6 +55,7 @@ $("#btnChatBoxOff").click(function () {
 function onSelectUser(e) {
   user_id = $("#btnChatBoxOn").attr("user_id");
   $("#infoName").text(e?.name);
+  $("#infoName").attr("user_id", e?.user_id)
   $("#infoName").attr("room_id", e?.room_id)
 
   if (e?.room_id === -1) {
@@ -66,6 +67,8 @@ function onSelectUser(e) {
   } else {
     postJoinChat({
       room_id: e?.room_id,
+      fromUser: user_id,
+      toUser: e?.user_id,
     });
   }
 }
@@ -100,6 +103,8 @@ function postCreateChat(e) {
 
         postJoinChat({
           room_id,
+          fromUser: e?.fromUser,
+          toUser: e?.toUser,
         });
       }
     })
@@ -109,6 +114,8 @@ function postCreateChat(e) {
 }
 
 function postJoinChat(e) {
+  $("#viewChat").empty();
+  
   axios
     .post(`/api/join-chat`, e)
     .then((res) => {
@@ -147,6 +154,7 @@ function postJoinChat(e) {
   
           document.getElementById("viewChat").appendChild(div);
           });
+          $("#viewChat").animate({scrollTop:$("#viewChat")[0].scrollHeight}, 'slow')
         }else{
           $("#viewChat").empty();
         }
@@ -163,9 +171,11 @@ $("#inputMessage").keypress(function (e) {
     const input = document.getElementById("inputMessage");
     text = $.trim(input.value);
     room_id = $("#infoName").attr("room_id");
+    toUser = $("#infoName").attr("user_id");
 
     if (
       user_id &&
+      toUser &&
       text &&
       !isNaN(Number(room_id))
     ) {
@@ -174,8 +184,10 @@ $("#inputMessage").keypress(function (e) {
           text,
           fromUser,
           room_id,
+          toUser,
         })
         .then((res) => {
+          console.log("hoand sendMessage.res",res)
           const div = document.createElement('div');
           div.innerHTML = `
             <div class="chat-detail-container">
@@ -187,6 +199,7 @@ $("#inputMessage").keypress(function (e) {
             </div>
         `
           document.getElementById("viewChat").appendChild(div);
+          $("#viewChat").animate({scrollTop:$("#viewChat")[0].scrollHeight}, 'slow')
         })
         .catch((err) => {
           console.log("hoand sendMessage.err", err);
