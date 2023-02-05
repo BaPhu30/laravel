@@ -1,6 +1,7 @@
 $("#btnChatBoxOn").click(function () {
   $("#chatBox").addClass("chat-box-on");
   $("#btnChatBoxOn").removeClass("chat-box-on");
+  $("#list-user").empty();
 
   user_id = $(this).attr("user_id");
 
@@ -34,8 +35,8 @@ $("#btnChatBoxOn").click(function () {
 												<div class="user-name-container">
 												<div class="user-name">${e?.name}</div>
 												<div class="new-message-container">
-														<div class="message">Xin 50 chục bạn ê</div>
-														<div class="message-date">20:20</div>
+														<div class="message">${e?.text || ""}</div>
+														<div class="message-date">${e?.text_created_at ||""}</div>
 												</div>
 												</div>
 										</div>
@@ -50,6 +51,7 @@ $("#btnChatBoxOn").click(function () {
 $("#btnChatBoxOff").click(function () {
   $("#chatBox").removeClass("chat-box-on");
   $("#btnChatBoxOn").addClass("chat-box-on");
+  $("#list-user").empty();
 });
 
 function onSelectUser(e) {
