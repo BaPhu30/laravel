@@ -53,7 +53,7 @@ class FCMController extends Controller
           ->select(DB::raw('MAX(id) as new_message_id'))
           ->where([
             ['room_id', '=', $shareRoom[0]->room_id],
-            ['user_id', '<>', $user_id]
+            // ['user_id', '<>', $user_id]
           ])
           ->get();
 
