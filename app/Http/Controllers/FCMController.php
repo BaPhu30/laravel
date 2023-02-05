@@ -19,23 +19,77 @@ class FCMController extends Controller
       $params = $req->all();
       $user_id = $params['user_id'];
 
-      $users = DB::table('users')
-        ->select([
-          'users.id as user_id',
-          'users.name',
-          'users.email',
-          'users.avatar',
-          'users.device_token',
-          DB::raw("IF(ISNULL(user_room.room_id)=1, -1, user_room.room_id) as room_id"),
-        ])
-        ->leftJoin('user_room', 'user_room.user_id', '=', 'users.id')
-        ->where('users.id', '<>', $user_id)
-        ->get();
+      $tempElseRoom = DB::unprepared(
+        DB::raw("CREATE TEMPORARY TABLE t_else_room AS (
+          SELECT * FROM user_room WHERE user_id <> $user_id
+          );")
+      );
+
+      $tempMyRoom = DB::unprepared(
+        DB::raw("CREATE TEMPORARY TABLE t_my_room AS (
+          SELECT * FROM user_room WHERE user_id = $user_id
+          );")
+      );
+
+      $tempShareRoom = DB::unprepared(
+        DB::raw("CREATE TEMPORARY TABLE t_share_room AS (
+          SELECT 
+            t_else_room.user_id,
+            t_my_room.room_id
+          FROM t_else_room 
+          JOIN t_my_room ON t_my_room.room_id = t_else_room.room_id
+          );")
+      );
+
+      if (
+        $tempElseRoom &&
+        $tempMyRoom &&
+        $tempShareRoom
+      ) {
+        $shareRoom = DB::table('t_share_room')
+          ->get();
+
+        $newMessageID = DB::table('messenger')
+          ->select(DB::raw('MAX(id) as new_message_id'))
+          ->where([
+            ['room_id', '=', $shareRoom[0]->room_id],
+            ['user_id', '<>', $user_id]
+          ])
+          ->get();
+
+        $newMessageIDNumber = $newMessageID[0]->new_message_id;
+
+        $tempNewMessage = DB::unprepared(
+          DB::raw("CREATE TEMPORARY TABLE t_new_massage AS (
+              SELECT * 
+              FROM messenger 
+              WHERE id = $newMessageIDNumber
+              );")
+        );
+
+        if($tempNewMessage){
+          $users = DB::table('users')
+          ->select([
+            'users.id as user_id',
+            'users.name',
+            'users.email',
+            'users.avatar',
+            'users.device_token',
+            DB::raw("IF(ISNULL(t_share_room.room_id)=1, -1, t_share_room.room_id) as room_id"),
+            't_new_massage.text',
+            DB::raw("TIME_FORMAT(t_new_massage.created_at, '%H:%i') as text_created_at")
+          ])
+          ->leftJoin('t_share_room', 't_share_room.user_id', '=', 'users.id')
+          ->leftJoin('t_new_massage', 't_new_massage.room_id', '=', 't_share_room.room_id')
+          ->where('users.id', '<>', $user_id)
+          ->get();
+        }
+      }
 
       return response()->json([
         'success' => true,
         'message' => 'Get Chat Users Success.',
-        'data' => $users
+        'data' => $users,
       ]);
     } catch (\Throwable $th) {
       return response()->json([
